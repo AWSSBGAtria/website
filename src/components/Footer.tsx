@@ -1,26 +1,55 @@
-import Link from "next/link";
-import { FaGithub, FaInstagram, FaLinkedin, FaMeetup } from "react-icons/fa";
+import { FaInstagram, FaLinkedin, FaMeetup, FaGithub, FaWhatsapp } from "react-icons/fa";
+import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="relative z-10 w-full border-t border-[#7c5aed]/10 bg-white px-6 py-10 text-[#1a1a1b] md:px-12">
-      <div className="flex flex-1 items-center justify-center py-10 leading-none select-none md:py-16">
-        <h1 className="font-[family-name:var(--font-display)] text-[clamp(2.5rem,10vw,12rem)] font-black tracking-tighter whitespace-normal text-center break-words uppercase opacity-5 hover:opacity-100 hover:text-[#7c5aed] transition-all duration-700 cursor-default">
-          #AWSCloudClubs
-        </h1>
+    <footer className="relative bg-primary text-white pt-20 md:pt-32 pb-12 overflow-hidden">
+      {/* Huge #AWSCloudClubs text */}
+      <div className="absolute inset-0 select-none pointer-events-none z-0 overflow-hidden flex items-end justify-center">
+        <h2 className="text-[8vw] font-black uppercase tracking-tighter opacity-10 leading-none whitespace-nowrap">
+          #AWSStudentBuilders
+        </h2>
       </div>
 
-      <div className="flex flex-col items-center justify-between gap-8 pt-8 border-t border-[#7c5aed]/10 pb-2 text-center text-xs font-black uppercase tracking-widest md:flex-row md:items-end md:text-left">
-        <div className="order-2 md:order-1 text-[#1a1a1b]/40">
-          <p>&copy; {new Date().getFullYear()} AWS Cloud Club Atria.</p>
-          <p className="mt-1">All rights reserved.</p>
+      <div className="container mx-auto relative z-10 px-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-12 sm:mb-20 mb-12">
+          <div>
+            <h3 className="text-4xl lg:text-5xl font-black uppercase tracking-tighter mb-4 leading-none">
+              AWS Student Builder Group
+            </h3>
+            <p className="text-white/40 font-bold uppercase tracking-[0.2em] text-[0.65rem]">
+              Atria Institute of Technology, Bengaluru
+            </p>
+          </div>
+
+          <div className="flex gap-4">
+            <Link href="/join" target="_blank" className="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-white hover:text-primary transition-all rounded-sm group">
+              <FaMeetup className="w-5 h-5 opacity-50 group-hover:opacity-100" />
+            </Link>
+            <Link href="/instagram" target="_blank" className="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-white hover:text-primary transition-all rounded-sm group">
+              <FaInstagram className="w-5 h-5 opacity-50 group-hover:opacity-100" />
+            </Link>
+            <Link href="/linkedin" target="_blank" className="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-white hover:text-primary transition-all rounded-sm group">
+              <FaLinkedin className="w-5 h-5 opacity-50 group-hover:opacity-100" />
+            </Link>
+            <Link href="/github" target="_blank" className="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-white hover:text-primary transition-all rounded-sm group">
+              <FaGithub className="w-5 h-5 opacity-50 group-hover:opacity-100" />
+            </Link>
+            <Link href="/whatsapp" target="_blank" className="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-white hover:text-primary transition-all rounded-sm group">
+              <FaWhatsapp className="w-5 h-5 opacity-50 group-hover:opacity-100" />
+            </Link>
+          </div>
         </div>
 
-        <div className="order-1 flex gap-8 md:order-2">
-          <Link href="#" className="text-[#1a1a1b]/40 hover:text-[#7c5aed] transition-all hover:-translate-y-1"><FaMeetup className="h-6 w-6" /></Link>
-          <Link href="#" className="text-[#1a1a1b]/40 hover:text-[#f46ebb] transition-all hover:-translate-y-1"><FaInstagram className="h-6 w-6" /></Link>
-          <Link href="#" className="text-[#1a1a1b]/40 hover:text-[#7c5aed] transition-all hover:-translate-y-1"><FaGithub className="h-6 w-6" /></Link>
-          <Link href="#" className="text-[#1a1a1b]/40 hover:text-[#2074d5] transition-all hover:-translate-y-1"><FaLinkedin className="h-6 w-6" /></Link>
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
+          <span className="text-[0.65rem] font-bold uppercase tracking-[0.3em] text-white/50">
+            © {new Date().getFullYear()} AWS Student Builder Group ATRIA.
+          </span>
+          {/* <div className="flex gap-8">
+            <Link href="#" className="text-[0.65rem] font-bold uppercase tracking-[0.3em] text-white/20 hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="#" className="text-[0.65rem] font-bold uppercase tracking-[0.3em] text-white/20 hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/contact" className="text-[0.65rem] font-bold uppercase tracking-[0.3em] text-white/20 hover:text-white transition-colors">Contact</Link>
+          </div> */}
         </div>
       </div>
     </footer>

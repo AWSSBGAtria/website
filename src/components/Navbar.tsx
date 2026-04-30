@@ -1,117 +1,134 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
-import { Menu, Sparkles, X } from "lucide-react";
-import Image from "next/image";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaInstagram, FaLinkedin, FaGithub, FaWhatsapp } from "react-icons/fa";
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const links = [
-    { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Events", href: "/events" },
     { name: "Team", href: "/team" },
   ];
 
+  const socials = [
+    { name: "Instagram", icon: FaInstagram, href: "/instagram" },
+    { name: "LinkedIn", icon: FaLinkedin, href: "/linkedin" },
+    { name: "GitHub", icon: FaGithub, href: "/github" },
+    { name: "WhatsApp", icon: FaWhatsapp, href: "/whatsapp" },
+  ];
+
+  // Close menu when route changes
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
+
   return (
-    <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className="fixed top-0 z-50 w-full border-b border-[#7c5aed]/10 bg-white/70 py-2 backdrop-blur-xl"
-      >
-        <div className="flex w-full items-center justify-between px-8 md:px-12">
-          <Link href="/" className="flex items-center">
-            <img
-              src="/Purple.png"
-              alt="AWS Cloud Club Logo"
-              className="h-16 w-16 object-contain transition-transform hover:scale-110"
-            />
-          </Link>
-
-
-          <div className="hidden items-center gap-8 md:flex">
-            <ul className="flex items-center gap-2">
-              {links.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className={cn(
-                      "px-3 py-1 font-[family-name:var(--font-mono)] text-[12px] font-black uppercase tracking-wider transition-all",
-                      pathname === link.href
-                        ? "text-[#7c5aed]"
-                        : "text-[#1a1a1b]/60 hover:text-[#7c5aed]"
-                    )}
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            <Link href="/events" className={buttonVariants({ size: "sm" })}>
-              {/* <Sparkles className="h-4 w-4" /> */}
-              Join The Club
+    <nav className="fixed top-0 left-0 w-full z-100">
+      <div className="h-17.5 flex justify-between items-stretch bg-white border-b border-border relative z-50">
+        <div className="flex items-stretch">
+          <div className="w-17.5 flex items-center justify-center border-r border-border">
+            <Link
+              href="/"
+              className="flex items-center justify-center w-full h-full text-primary hover:scale-110 transition-transform"
+            >
+              <Image
+                src="/Program_Icon.svg"
+                width={28}
+                height={28}
+                alt={"Program Icon"}
+              />
             </Link>
           </div>
 
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen((open) => !open)}
-              className="flex h-11 w-11 items-center justify-center border-2 border-[#7c5aed]/10 bg-white text-[#1a1a1b]"
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
+          {/* Desktop Links */}
+          <div className="hidden md:flex items-stretch">
+            {links.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={`px-8 flex items-center text-[0.7rem] font-bold uppercase tracking-[0.2em] border-r border-border transition-colors ${pathname === link.href ? "text-primary bg-slate-50" : "text-secondary/60 hover:text-primary hover:bg-slate-50"}`}
+              >
+                {link.name}
+              </Link>
+            ))}
           </div>
         </div>
-      </motion.nav>
 
-      <AnimatePresence>
-        {isOpen ? (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-x-4 top-24 z-40 border-2 border-[#7c5aed]/10 bg-white/95 p-6 backdrop-blur-xl md:hidden shadow-2xl"
+        <div className="flex items-stretch">
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden w-17.5 flex items-center justify-center border-l border-border text-secondary hover:text-primary transition-colors"
+            aria-label="Toggle Menu"
           >
-            <ul className="flex flex-col gap-4">
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+
+          <Link
+            href="/join"
+            target="_blank"
+            className="bg-primary text-white px-6 md:px-10 flex items-center text-[0.6rem] md:text-[0.7rem] font-bold uppercase tracking-[0.2em] hover:bg-indigo-700 transition-colors border-l border-border md:border-l-0"
+          >
+            Join The Club ↗
+          </Link>
+        </div>
+      </div>
+
+      {/* Mobile Menu Dropdown */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="absolute top-17.5 left-0 w-full bg-white border-b border-border shadow-2xl md:hidden overflow-hidden"
+          >
+            <div className="flex flex-col">
               {links.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className={cn(
-                      "block border-2 border-[#7c5aed]/5 px-4 py-4 font-[family-name:var(--font-mono)] text-sm font-black uppercase tracking-widest transition-colors",
-                      pathname === link.href
-                        ? "bg-[#7c5aed] text-white"
-                        : "text-[#1a1a1b]/70 hover:bg-[#7c5aed]/5"
-                    )}
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-              <li className="pt-2">
                 <Link
-                  href="/events"
-                  onClick={() => setIsOpen(false)}
-                  className={buttonVariants({ className: "w-full" })}
+                  key={link.name}
+                  href={link.href}
+                  className={`px-8 py-6 flex items-center justify-between border-b border-border/50 last:border-b-0 transition-colors ${pathname === link.href ? "bg-slate-50 text-primary" : "text-secondary/60 active:bg-slate-100"}`}
                 >
-                  {/* <Sparkles className="h-4 w-4" /> */}
-                  Join The Club
+                  <span className="text-[0.8rem] font-black uppercase tracking-[0.3em]">
+                    {link.name}
+                  </span>
+                  <div
+                    className={`w-1.5 h-1.5 rounded-full ${pathname === link.href ? "bg-primary" : "bg-transparent"}`}
+                  />
                 </Link>
-              </li>
-            </ul>
+              ))}
+              <div className="p-8 bg-slate-50 flex flex-col gap-4">
+                <span className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-secondary/40">
+                  Connect With Us
+                </span>
+                <div className="flex gap-4">
+                  {socials.map((social) => (
+                    <Link
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      className="w-12 h-12 border border-border bg-white flex items-center justify-center text-secondary/60 hover:text-primary transition-all rounded-sm shadow-sm"
+                      aria-label={social.name}
+                    >
+                      <social.icon size={20} />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
           </motion.div>
-        ) : null}
+        )}
       </AnimatePresence>
-    </>
+    </nav>
   );
 }

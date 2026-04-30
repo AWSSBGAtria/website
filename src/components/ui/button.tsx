@@ -30,6 +30,6 @@ export function buttonVariants({
     "inline-flex items-center justify-center gap-2 whitespace-nowrap font-[family-name:var(--font-mono)] text-[12px] font-black uppercase tracking-[0.1em] transition-all disabled:pointer-events-none disabled:opacity-50",
     variantClasses[variant],
     sizeClasses[size],
-    className
+    className,
   );
 }

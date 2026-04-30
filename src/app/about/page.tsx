@@ -2,99 +2,163 @@
 
 import { motion } from "framer-motion";
 import { Cloud, Target, Users, Zap } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { FeaturePanel } from "@/components/ui/feature-panel";
-import { PageShell } from "@/components/ui/page-shell";
-import { SectionHeading } from "@/components/ui/section-heading";
-import { focusAreas } from "@/lib/site-data";
+import React from "react";
+import AsciiCube from "@/components/ui/ascii-cube";
+import AsciiSphere from "@/components/ui/ascii-sphere";
+import NetworkGrid from "@/components/ui/network-grid";
+
+const revealVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as any },
+  },
+};
 
 export default function AboutPage() {
   return (
-    <PageShell>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-24"
-        >
-          <SectionHeading
-            eyebrow="Core Directives"
-            title="A student-led cloud community built around practice."
-            description="AWS Cloud Club at Atria is for students who want hands-on cloud work, sharper technical foundations, and a space to build with others."
-          />
-        </motion.div>
-
-        <div className="mb-32 grid grid-cols-1 gap-12 md:grid-cols-2">
+    <div className="bg-white min-h-screen pt-17.5">
+      {/* Header Section */}
+      <section className="py-20 border-b border-border overflow-hidden relative">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-96 bg-[radial-gradient(ellipse_at_top,rgba(79,70,229,0.15)_0%,transparent_70%)] pointer-events-none -z-10" />
+        <div className="absolute left-0 top-0 bottom-0 w-1/3 opacity-10 pointer-events-none">
+          <NetworkGrid />
+        </div>
+        <div className="hidden lg:flex absolute right-0 top-0 bottom-0 w-1/3 opacity-50 pointer-events-none items-center justify-center">
+          <AsciiCube size={400} />
+        </div>
+        <div className="container px-8 mx-auto relative z-10">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            initial="hidden"
+            animate="visible"
+            variants={revealVariants}
           >
-            <Card className="h-full bg-white border-2 border-[#7c5aed]/5 shadow-[12px_12px_0px_0px_rgba(124,90,237,0.04)]">
-              <CardHeader className="border-b border-[#7c5aed]/10 pb-6">
-                <div className="mb-4 flex h-14 w-14 items-center justify-center border-2 border-[#7c5aed]/20 bg-[#7c5aed]/5 text-[#7c5aed]">
-                    <Target className="h-7 w-7" />
-                </div>
-                <CardTitle className="text-4xl">Our Vision</CardTitle>
-              </CardHeader>
-              <CardContent className="pt-8">
-                <p className="text-lg font-medium leading-relaxed text-[#1a1a1b]/80">
-                    To cultivate a community of cloud-native builders who actively shape the future of technology by mastering Amazon Web Services and participating in the global developer ecosystem.
-                </p>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <Card className="h-full bg-white border-2 border-[#7c5aed]/5 shadow-[12px_12px_0px_0px_rgba(124,90,237,0.04)]">
-              <CardHeader className="border-b border-[#7c5aed]/10 pb-6">
-                <div className="mb-4 flex h-14 w-14 items-center justify-center border-2 border-[#7c5aed]/20 bg-[#7c5aed]/5 text-[#7c5aed]">
-                    <Users className="h-7 w-7" />
-                </div>
-                <CardTitle className="text-4xl">Our Mission</CardTitle>
-              </CardHeader>
-              <CardContent className="pt-8">
-                <p className="text-lg font-medium leading-relaxed text-[#1a1a1b]/80">
-                    Equip students with the practical skills, industry certifications, and hands-on project experience necessary to thrive in the competitive cloud computing landscape.
-                </p>
-              </CardContent>
-            </Card>
+            <span className="text-[0.7rem] font-bold uppercase tracking-[0.3em] text-primary mb-4 block">
+              Our Philosophy
+            </span>
+            <h1 className="text-6xl lg:text-8xl font-black tracking-tighter leading-[0.9] text-secondary mb-8">
+              Community built <br /> around <br /> practice.
+            </h1>
+            <p className="text-xl text-secondary/60 font-medium leading-relaxed max-w-2xl">
+              AWS Student Builder Group at Atria is for students who want
+              hands-on cloud work, sharper technical foundations, and a space to
+              build with others.
+            </p>
           </motion.div>
         </div>
+      </section>
 
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="relative geometric-block p-10 md:p-16 overflow-hidden bg-white/50 border-2 border-[#7c5aed]/10 shadow-[20px_20px_0px_0px_rgba(124,90,237,0.03)]"
-        >
-          <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-[#f46ebb]/5 via-transparent to-[#2074d5]/5 pointer-events-none" />
-          
-          <div className="relative z-10">
-            <SectionHeading
-              eyebrow="What We Do"
-              title="Programs that turn curiosity into output."
-              description="Every part of the club is structured to move students from interest to skill, then from skill to real projects."
-            />
+      {/* Vision/Mission Section */}
+      <section className="py-32 border-b border-border bg-slate-50/30">
+        <div className="container px-8 mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={revealVariants}
+              className="p-12 bg-white border border-border group"
+            >
+              <div className="w-16 h-16 bg-slate-100 flex items-center justify-center mb-8 border border-border group-hover:border-primary transition-colors">
+                <Target className="w-8 h-8 text-primary" />
+              </div>
+              <h2 className="text-4xl font-black tracking-tighter text-secondary mb-6 uppercase">
+                Our Vision
+              </h2>
+              <p className="text-lg text-secondary/60 font-medium leading-relaxed">
+                To cultivate a community of cloud-native builders who actively
+                shape the future of technology by mastering Amazon Web Services
+                and participating in the global developer ecosystem.
+              </p>
+            </motion.div>
 
-            <div className="mt-16 grid gap-8 md:grid-cols-3">
-              {[
-                { icon: Cloud, title: "Workshops & Training", description: focusAreas[0].description },
-                { icon: Zap, title: "Hackathons & Projects", description: focusAreas[1].description },
-                { icon: Target, title: "AWS Certifications", description: focusAreas[2].description },
-              ].map((item) => (
-                <FeaturePanel key={item.title} icon={item.icon} title={item.title} description={item.description} className="bg-white/80" />
-              ))}
-            </div>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={revealVariants}
+              transition={{ delay: 0.1 }}
+              className="p-12 bg-white border border-border group"
+            >
+              <div className="w-16 h-16 bg-slate-100 flex items-center justify-center mb-8 border border-border group-hover:border-primary transition-colors">
+                <Users className="w-8 h-8 text-primary" />
+              </div>
+              <h2 className="text-4xl font-black tracking-tighter text-secondary mb-6 uppercase">
+                Our Mission
+              </h2>
+              <p className="text-lg text-secondary/60 font-medium leading-relaxed">
+                Equip students with the practical skills, industry
+                certifications, and hands-on project experience necessary to
+                thrive in the competitive cloud computing landscape.
+              </p>
+            </motion.div>
           </div>
-        </motion.div>
-    </PageShell>
+        </div>
+      </section>
+
+      {/* What We Do Section */}
+      <section className="py-32 border-b border-border relative overflow-hidden">
+        <div className="absolute right-0 bottom-0 w-1/2 h-1/2 opacity-10 pointer-events-none">
+          <AsciiSphere size={500} />
+        </div>
+        <div className="container px-8 mx-auto relative z-10">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={revealVariants}
+            className="mb-20"
+          >
+            <span className="text-[0.7rem] font-bold uppercase tracking-[0.3em] text-primary mb-4 block">
+              What We Do
+            </span>
+            <h2 className="text-5xl lg:text-7xl font-black tracking-tighter text-secondary leading-none uppercase mb-8">
+              Programs that turn <br /> curiosity into <br /> output.
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {[
+              {
+                icon: Cloud,
+                title: "Workshops",
+                desc: "Interactive training sessions covering AWS fundamentals to advanced serverless architectures.",
+              },
+              {
+                icon: Zap,
+                title: "Projects",
+                desc: "Collaborative building sessions where members work on real-world cloud applications.",
+              },
+              {
+                icon: Target,
+                title: "Certifications",
+                desc: "Structured study groups and resources to help members achieve AWS Cloud Practitioner and Solutions Architect certifications.",
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={revealVariants}
+                transition={{ delay: i * 0.1 }}
+                className="flex flex-col gap-6"
+              >
+                <div className="text-primary">
+                  <item.icon className="w-10 h-10" />
+                </div>
+                <h3 className="text-2xl font-black tracking-tighter text-secondary uppercase leading-none">
+                  {item.title}
+                </h3>
+                <p className="text-secondary/60 font-medium leading-relaxed">
+                  {item.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }
