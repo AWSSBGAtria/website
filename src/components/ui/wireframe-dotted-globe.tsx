@@ -15,7 +15,6 @@ export default function RotatingEarth({
   className = "",
 }: RotatingEarthProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   // AWS Region Coordinates
@@ -81,7 +80,22 @@ export default function RotatingEarth({
       return inside;
     };
 
-    const pointInFeature = (point: [number, number], feature: any): boolean => {
+    type LandFeature = {
+      type: "Feature";
+      geometry:
+        | { type: "Polygon"; coordinates: number[][][] }
+        | { type: "MultiPolygon"; coordinates: number[][][][] };
+      properties: { featurecla?: string } | null;
+    };
+
+    type LandData = {
+      features: LandFeature[];
+    };
+
+    const pointInFeature = (
+      point: [number, number],
+      feature: LandFeature,
+    ): boolean => {
       const geometry = feature.geometry;
 
       if (geometry.type === "Polygon") {
@@ -121,7 +135,7 @@ export default function RotatingEarth({
       return false;
     };
 
-    const generateDotsInPolygon = (feature: any, dotSpacing = 16) => {
+    const generateDotsInPolygon = (feature: LandFeature, dotSpacing = 16) => {
       const dots: [number, number][] = [];
       const bounds = d3.geoBounds(feature);
       const [[minLng, minLat], [maxLng, maxLat]] = bounds;
@@ -153,7 +167,7 @@ export default function RotatingEarth({
     }
 
     const allDots: DotData[] = [];
-    let landFeatures: any;
+    let landFeatures: LandData | null = null;
 
     const render = () => {
       // Clear canvas
@@ -190,7 +204,7 @@ export default function RotatingEarth({
 
         // Draw land outlines
         context.beginPath();
-        landFeatures.features.forEach((feature: any) => {
+        landFeatures.features.forEach((feature) => {
           path(feature);
         });
         context.strokeStyle = "#ffffff";
@@ -268,18 +282,16 @@ export default function RotatingEarth({
 
     const loadWorldData = async () => {
       try {
-        setIsLoading(true);
-
         const response = await fetch(
           "https://raw.githubusercontent.com/martynafford/natural-earth-geojson/refs/heads/master/110m/physical/ne_110m_land.json",
         );
         if (!response.ok) throw new Error("Failed to load land data");
 
-        landFeatures = await response.json();
+        landFeatures = (await response.json()) as LandData;
 
         // Generate dots for all land features
         let totalDots = 0;
-        landFeatures.features.forEach((feature: any) => {
+        landFeatures.features.forEach((feature) => {
           const dots = generateDotsInPolygon(feature, 16);
           dots.forEach(([lng, lat]) => {
             allDots.push({ lng, lat, visible: true });
@@ -292,10 +304,8 @@ export default function RotatingEarth({
         );
 
         render();
-        setIsLoading(false);
-      } catch (err) {
+      } catch {
         setError("Failed to load land map data");
-        setIsLoading(false);
       }
     };
 

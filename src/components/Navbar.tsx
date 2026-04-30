@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
@@ -25,11 +25,6 @@ export default function Navbar() {
     { name: "WhatsApp", icon: FaWhatsapp, href: "/whatsapp" },
   ];
 
-  // Close menu when route changes
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [pathname]);
-
   return (
     <nav className="fixed top-0 left-0 w-full z-100">
       <div className="h-17.5 flex justify-between items-stretch bg-white border-b border-border relative z-50">
@@ -38,6 +33,7 @@ export default function Navbar() {
             <Link
               href="/"
               className="flex items-center justify-center w-full h-full text-primary hover:scale-110 transition-transform"
+              onClick={() => setIsMenuOpen(false)}
             >
               <Image
                 src="/Program_Icon.svg"
@@ -54,6 +50,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
+                onClick={() => setIsMenuOpen(false)}
                 className={`px-8 flex items-center text-[0.7rem] font-bold uppercase tracking-[0.2em] border-r border-border transition-colors ${pathname === link.href ? "text-primary bg-slate-50" : "text-secondary/60 hover:text-primary hover:bg-slate-50"}`}
               >
                 {link.name}
@@ -75,6 +72,7 @@ export default function Navbar() {
           <Link
             href="/join"
             target="_blank"
+            onClick={() => setIsMenuOpen(false)}
             className="bg-primary text-white px-6 md:px-10 flex items-center text-[0.6rem] md:text-[0.7rem] font-bold uppercase tracking-[0.2em] hover:bg-indigo-700 transition-colors border-l border-border md:border-l-0"
           >
             Join The Club ↗
@@ -97,6 +95,7 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
+                  onClick={() => setIsMenuOpen(false)}
                   className={`px-8 py-6 flex items-center justify-between border-b border-border/50 last:border-b-0 transition-colors ${pathname === link.href ? "bg-slate-50 text-primary" : "text-secondary/60 active:bg-slate-100"}`}
                 >
                   <span className="text-[0.8rem] font-black uppercase tracking-[0.3em]">
@@ -117,6 +116,7 @@ export default function Navbar() {
                       key={social.name}
                       href={social.href}
                       target="_blank"
+                      onClick={() => setIsMenuOpen(false)}
                       className="w-12 h-12 border border-border bg-white flex items-center justify-center text-secondary/60 hover:text-primary transition-all rounded-sm shadow-sm"
                       aria-label={social.name}
                     >

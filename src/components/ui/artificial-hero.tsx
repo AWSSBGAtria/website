@@ -46,8 +46,8 @@ export default function ArtificialHero() {
             <p className="text-[1rem] lg:text-[1.1rem] font-medium leading-relaxed text-secondary/80 max-w-lg">
               The official AWS Student Builder Group at Atria I.T. Join a
               vibrant community of student developers, cloud enthusiasts, and
-              future architects building on the world's most comprehensive cloud
-              platform.
+              future architects building on the world&apos;s most comprehensive
+              cloud platform.
             </p>
 
             <Link

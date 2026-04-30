@@ -4,19 +4,30 @@ import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Twitter, Instagram } from "lucide-react";
 import React from "react";
 import { teams } from "@/lib/site-data";
-import AsciiSphere from "@/components/ui/ascii-sphere";
 import AsciiDiamond from "@/components/ui/ascii-diamond";
+
+type SocialPlatform = "github" | "linkedin" | "twitter" | "mail" | "instagram";
+
+type TeamMember = {
+  name: string;
+  role: string;
+  image?: string;
+  bio?: string;
+  socials: Partial<Record<SocialPlatform, string>>;
+};
+
+type TeamGroups = Record<string, TeamMember[]>;
 
 const revealVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as any },
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
   },
 };
 
-const socialIcons: Record<string, React.ReactNode> = {
+const socialIcons: Record<SocialPlatform, React.ReactNode> = {
   github: <Github className="h-4 w-4" />,
   linkedin: <Linkedin className="h-4 w-4" />,
   twitter: <Twitter className="h-4 w-4" />,
@@ -24,7 +35,7 @@ const socialIcons: Record<string, React.ReactNode> = {
   instagram: <Instagram className="h-4 w-4" />,
 };
 
-const getSocialUrl = (platform: string, username: string) => {
+const getSocialUrl = (platform: SocialPlatform, username: string) => {
   if (!username || username === "#") return "#";
   switch (platform) {
     case "github":
@@ -47,7 +58,7 @@ function MemberCard({
   category,
   index,
 }: {
-  member: any;
+  member: TeamMember;
   category: string;
   index: number;
 }) {
@@ -84,12 +95,12 @@ function MemberCard({
         {Object.entries(member.socials).map(([platform, username]) => (
           <a
             key={platform}
-            href={getSocialUrl(platform, username as string)}
+            href={getSocialUrl(platform as SocialPlatform, username ?? "")}
             target="_blank"
             rel="noopener noreferrer"
             className="w-8 h-8 border border-border flex items-center justify-center text-secondary/40 hover:bg-secondary hover:text-white hover:border-secondary transition-all"
           >
-            {socialIcons[platform]}
+            {socialIcons[platform as SocialPlatform]}
           </a>
         ))}
       </div>
@@ -98,7 +109,7 @@ function MemberCard({
 }
 
 export default function TeamPage() {
-  const { Leader, ...rest } = teams as any;
+  const { Leader, ...rest } = teams as TeamGroups;
   const leader = Leader?.[0];
 
   return (
@@ -174,12 +185,15 @@ export default function TeamPage() {
                     ([platform, username]) => (
                       <a
                         key={platform}
-                        href={getSocialUrl(platform, username as string)}
+                        href={getSocialUrl(
+                          platform as SocialPlatform,
+                          username ?? "",
+                        )}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-12 h-12 border border-border flex items-center justify-center text-secondary/40 hover:bg-secondary hover:text-white hover:border-secondary transition-all"
                       >
-                        {socialIcons[platform]}
+                        {socialIcons[platform as SocialPlatform]}
                       </a>
                     ),
                   )}
@@ -191,41 +205,43 @@ export default function TeamPage() {
       )}
 
       {/* Other Teams */}
-      {Object.entries(rest).map(([category, members]: [string, any]) => (
-        <section
-          key={category}
-          className="py-32 border-b border-border last:border-b-0"
-        >
-          <div className="container px-8 mx-auto">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={revealVariants}
-              className="mb-20"
-            >
-              <h2 className="text-4xl lg:text-6xl font-black tracking-tighter text-secondary uppercase leading-none">
-                {category}
-              </h2>
-            </motion.div>
+      {Object.entries(rest).map(
+        ([category, members]: [string, TeamMember[]]) => (
+          <section
+            key={category}
+            className="py-32 border-b border-border last:border-b-0"
+          >
+            <div className="container px-8 mx-auto">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={revealVariants}
+                className="mb-20"
+              >
+                <h2 className="text-4xl lg:text-6xl font-black tracking-tighter text-secondary uppercase leading-none">
+                  {category}
+                </h2>
+              </motion.div>
 
-            <div className="flex overflow-x-auto pb-8 -mx-8 px-8 snap-x snap-mandatory md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-12 md:pb-0 md:mx-0 md:px-0 scrollbar-hide">
-              {(members as any[]).map((member, index) => (
-                <div
-                  key={index}
-                  className="min-w-[80vw] md:min-w-0 snap-center pr-8 md:pr-0"
-                >
-                  <MemberCard
-                    member={member}
-                    category={category}
-                    index={index}
-                  />
-                </div>
-              ))}
+              <div className="flex overflow-x-auto pb-8 -mx-8 px-8 snap-x snap-mandatory md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-12 md:pb-0 md:mx-0 md:px-0 scrollbar-hide">
+                {members.map((member, index) => (
+                  <div
+                    key={index}
+                    className="min-w-[80vw] md:min-w-0 snap-center pr-8 md:pr-0"
+                  >
+                    <MemberCard
+                      member={member}
+                      category={category}
+                      index={index}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
-      ))}
+          </section>
+        ),
+      )}
     </div>
   );
 }
