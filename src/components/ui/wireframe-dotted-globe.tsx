@@ -404,9 +404,6 @@ export default function RotatingEarth({
         className="block mx-auto dark"
         style={{ maxWidth: "100%", height: "auto", aspectRatio: "1/1" }}
       />
-      <div className="absolute bottom-4 left-4 text-xs text-muted-foreground px-2 py-1 rounded-md dark bg-neutral-900">
-        Drag to rotate • Scroll to zoom
-      </div>
     </div>
   );
 }
