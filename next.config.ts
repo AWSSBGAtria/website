@@ -26,29 +26,30 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "secure-content.meetupstatic.com",
-      }
+      },
     ],
   },
   async redirects() {
     return [
       {
         source: "/join",
-        destination: "https://www.meetup.com/aws-cloud-club-at-atria-inst-of-tech/",
+        destination: "https://www.meetup.com/aws-sbg-at-atria-inst-of-tech/",
         permanent: true,
       },
       {
         source: "/instagram",
-        destination: "https://www.instagram.com/awscloudclub.atria/",
+        destination: "https://www.instagram.com/awssbg.atria/",
         permanent: true,
       },
       {
         source: "/linkedin",
-        destination: "https://www.linkedin.com/company/aws-cloud-club-at-atria-inst-of-tech",
+        destination:
+          "https://www.linkedin.com/company/aws-sbg-at-atria-inst-of-tech",
         permanent: true,
       },
       {
         source: "/github",
-        destination: "https://github.com/AWSCloudClubAtria",
+        destination: "https://github.com/AWSSBGAtria",
         permanent: true,
       },
       {
@@ -58,7 +59,6 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  allowedDevOrigins: ['172.17.38.18'],
 };
 
 export default nextConfig;
