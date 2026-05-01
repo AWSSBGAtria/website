@@ -19,7 +19,39 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "AWS Student Builder Group | Atria Institute of Technology",
   description:
-    "AWS Student Builder Group at Atria - Light, Minimalist, Brutalist.",
+    "The official AWS Student Builder Group at Atria I.T. Join a vibrant community of student developers, cloud enthusiasts, and future architects building on the world's most comprehensive cloud platform.",
+  openGraph: {
+    title: "AWS Student Builder Group | Atria Institute of Technology",
+    description:
+      "The official AWS Student Builder Group at Atria I.T. Join a vibrant community of student developers, cloud enthusiasts, and future architects building on the world's most comprehensive cloud platform.",
+    url: "https://awsatria.tech",
+    siteName: "AWS Student Builder Group | Atria Institute of Technology",
+    images: [
+      {
+        url: "https://awsatria.tech/Program_Icon.svg",
+        width: 500,
+        height: 500,
+        alt: "AWS Student Builder Group at Atria Institute of Technology",
+      },
+    ],
+    locale: "en-US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "AWS Student Builder Group | Atria Institute of Technology",
+    description:
+      "The official AWS Student Builder Group at Atria I.T. Join a vibrant community of student developers, cloud enthusiasts, and future architects building on the world's most comprehensive cloud platform.",
+    creator: "@Dqrshan",
+    images: [
+      {
+        url: "https://awsatria.tech/Program_Icon.svg",
+        width: 500,
+        height: 500,
+        alt: "AWS Student Builder Group at Atria Institute of Technology",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

@@ -222,13 +222,13 @@ export function HomePageContent() {
             viewport={{ once: true }}
             variants={revealVariants}
           >
-            <h2 className="text-[5vw] font-black tracking-tighter leading-none mb-12 uppercase">
+            <h2 className="text-4xl sm:text-[5vw] font-black tracking-tighter leading-none mb-12 uppercase">
               Ready to <br /> start building?
             </h2>
             <Link
               href={"/join"}
               target={"_blank"}
-              className="px-16 py-6 bg-white text-primary font-black uppercase tracking-widest text-lg hover:bg-slate-100 transition-colors"
+              className="inline-block px-6 md:px-16 py-4 md:py-6 bg-white text-primary font-black uppercase tracking-widest text-sm md:text-lg hover:bg-slate-100 transition-colors rounded-lg"
             >
               Become a Member Now
             </Link>
