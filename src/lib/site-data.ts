@@ -193,7 +193,7 @@ export const teams = {
     {
       name: "Ratan Kumar B V",
       role: "Event Logistics Coordinator",
-      image: "/team/ratan.jpg",
+      image: "/team/ratan.jpeg",
       socials: {
         linkedin: "ratan-kumar-bv-194135282",
         instagram: "ratan_bv",
@@ -202,7 +202,7 @@ export const teams = {
     {
       name: "Mariam Farheen Saif",
       role: "Crowd Engagement Coordinator",
-      image: "/team/mariam.png",
+      image: "/team/mariam.jpeg",
       socials: {
         linkedin: "mariam-farheen-saif-747701337",
         instagram: "mariam_saif04",
