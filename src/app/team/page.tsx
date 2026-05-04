@@ -169,7 +169,7 @@ export default function TeamPage() {
                 variants={revealVariants}
               >
                 <span className="text-[0.7rem] font-bold uppercase tracking-[0.3em] text-primary mb-4 block">
-                  Community Lead
+                  Leader / President / Club Head
                 </span>
                 <h2 className="text-5xl lg:text-7xl font-black tracking-tighter text-secondary mb-6 leading-none uppercase">
                   {leader.name}
@@ -221,6 +221,7 @@ export default function TeamPage() {
               >
                 <h2 className="text-4xl lg:text-6xl font-black tracking-tighter text-secondary uppercase leading-none">
                   {category}
+                  {category !== "Core" ? " Wing" : ""}
                 </h2>
               </motion.div>
 
