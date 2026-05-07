@@ -22,6 +22,7 @@ export const teams = {
       name: "Darshan B",
       role: "AWS Student Builder Group Leader",
       image: "/team/darshan.jpg",
+      bio: "Computer Science student at Atria IT with a passion for cloud infrastructure and developer tooling. Founded the AWS Student Builder Group to give students a structured path into real-world cloud engineering — from core services to certification and beyond.",
       socials: {
         github: "Dqrshan",
         linkedin: "darshanb05",
@@ -86,6 +87,34 @@ export const teams = {
   ],
   Technical: [
     {
+      name: "Adam Aneeq Aqwath K A",
+      role: "Cloud Infrastructure Developer",
+      image: "/team/adam.jpg",
+      socials: {
+        github: "adamaneeqaqwathka-arch",
+        linkedin: "adam-aneeq-aqwath-k-a-",
+      },
+    },
+    {
+      name: "Manoj Kumar J",
+      role: "Cybersecurity Developer",
+      image: "/team/manoj.jpg",
+      socials: {
+        github: "manojkumar27-debug",
+        linkedin: "manoj-kumar-j-872821366",
+        instagram: "manoj_kumar.j.27",
+        twitter: "manoj61513",
+      },
+    },
+    {
+      name: "Aswin A",
+      role: "Full-Stack Developer",
+      image: "/team/aswin.png",
+      socials: {
+        github: "ashbuildsites",
+      },
+    },
+    {
       name: "C Yogeetha",
       role: "Full-Stack Developer",
       image: "/team/yogeetha.jpeg",
@@ -116,35 +145,8 @@ export const teams = {
         twitter: "joyprincy127",
       },
     },
-    {
-      name: "Aswin A",
-      role: "Full-Stack Developer",
-      image: "/team/aswin.jpg",
-      socials: {},
-    },
-    {
-      name: "Adam Aneeq Aqwath K A",
-      role: "Cloud Infrastructure Developer",
-      image: "/team/adam.jpg",
-      socials: {
-        github: "adamaneeqaqwathka-arch",
-        linkedin: "adam-aneeq-aqwath-k-a-",
-      },
-    },
-    {
-      name: "Manoj Kumar J",
-      role: "Cybersecurity Developer",
-      image: "/team/manoj.jpg",
-      socials: {},
-    },
   ],
   Media: [
-    {
-      name: "N Nikhil",
-      role: "Multimedia Creator",
-      image: "/team/nikhil.jpg",
-      socials: {},
-    },
     {
       name: "Joel Arul A",
       role: "Multimedia Creator",
@@ -152,6 +154,15 @@ export const teams = {
       socials: {
         linkedin: "joel-arul-a-4238b0328",
         instagram: "__._joel_arul_.__44",
+      },
+    },
+    {
+      name: "N Nikhil",
+      role: "Multimedia Creator",
+      image: "/team/nikhil.jpg",
+      socials: {
+        github: "nikhil-245",
+        linkedin: "n-nikhil-21a187328",
       },
     },
     {
@@ -167,17 +178,32 @@ export const teams = {
   ],
   Events: [
     {
-      name: "Abhishek",
-      role: "Event Logistics Coordinator",
-      image: "/team/abhishek.jpg",
-      socials: {},
-    },
-    {
       name: "Syed Farhan Fawad",
       role: "Campus PR Coordinator",
       image: "/team/farhan.jpg",
       socials: {
-        mail: "syedfarhanfawad007@gmail.com",
+        github: "farhanfawad007",
+        linkedin: "syed-farhan-fawad",
+        instagram: "farhanfawad007",
+      },
+    },
+    {
+      name: "Mariam Farheen Saif",
+      role: "Crowd Engagement Coordinator",
+      image: "/team/mariam.jpeg",
+      socials: {
+        linkedin: "mariam-farheen-saif-747701337",
+        instagram: "mariam_saif04",
+      },
+    },
+    {
+      name: "Abhishek Kumar",
+      role: "Event Logistics Coordinator",
+      image: "/team/abhishek.png",
+      socials: {
+        github: "JustAbhie",
+        linkedin: "abhishek-kumar-55178133b",
+        instagram: "just_abhi1508",
       },
     },
     {
@@ -199,35 +225,8 @@ export const teams = {
         instagram: "ratan_bv",
       },
     },
-    {
-      name: "Mariam Farheen Saif",
-      role: "Crowd Engagement Coordinator",
-      image: "/team/mariam.jpeg",
-      socials: {
-        linkedin: "mariam-farheen-saif-747701337",
-        instagram: "mariam_saif04",
-      },
-    },
   ],
   Operations: [
-    {
-      name: "Sanjana C P",
-      role: "Onboarding Operator",
-      image: "/team/sanjana.jpg",
-      socials: {
-        github: "sanjana-cp",
-        linkedin: "sanjana-c-p-457b72334",
-        instagram: "sanjanacp1",
-      },
-    },
-    {
-      name: "Baby V S",
-      role: "Onboarding Operator",
-      image: "/team/baby.jpg",
-      socials: {
-        linkedin: "baby-v-s",
-      },
-    },
     {
       name: "Chitrashree G",
       role: "Guest Experience Operator",
@@ -245,6 +244,34 @@ export const teams = {
         github: "meghashreenm2006",
         linkedin: "nm-megha-shree-51784b344",
         instagram: "meghashree7772",
+      },
+    },
+    {
+      name: "Baby V S",
+      role: "Onboarding Operator",
+      image: "/team/baby.jpg",
+      socials: {
+        linkedin: "baby-v-s",
+      },
+    },
+    {
+      name: "Sanjana C P",
+      role: "Onboarding Operator",
+      image: "/team/sanjana.jpg",
+      socials: {
+        github: "sanjana-cp",
+        linkedin: "sanjana-c-p-457b72334",
+        instagram: "sanjanacp1",
+        twitter: "",
+      },
+    },
+    {
+      name: "Krishna Bhat U",
+      role: "Tech Resource Operator",
+      image: "/team/krishna.jpeg",
+      socials: {
+        github: "krx7h",
+        linkedin: "krishnabhatu",
       },
     },
   ],
