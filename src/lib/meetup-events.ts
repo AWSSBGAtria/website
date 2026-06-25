@@ -12,12 +12,33 @@ export type MeetupEvent = {
 };
 
 const GQL_ENDPOINT = "https://www.meetup.com/gql2";
-const GROUP_URLNAME = "aws-cloud-club-at-atria-inst-of-tech";
+const GROUP_URLNAME = "aws-sbg-at-atria-inst-of-tech";
 
 const HASHES = {
-  upcoming: "29367d3079b76c813351939b4b74a273299778a57497d39369d12d4d68e5976b",
   past: "321388b1e4a11b17a57efe3ae7a90abfecbc703a4f4e99519772294924c21351",
 };
+
+const UPCOMING_QUERY = `query getUpcomingGroupEvents($urlname: String!, $afterDateTime: DateTime!) {
+  groupByUrlname(urlname: $urlname) {
+    id
+    events(filter: { afterDateTime: $afterDateTime }) {
+      edges {
+        node {
+          id
+          title
+          dateTime
+          eventUrl
+          description
+          isOnline
+          eventType
+          venue { name }
+          featuredEventPhoto { baseUrl }
+          displayPhoto { baseUrl }
+        }
+      }
+    }
+  }
+}`;
 
 function formatDateParts(isoDate: string) {
   const date = new Date(isoDate);
@@ -70,23 +91,30 @@ function mapGqlEvent(node: any): MeetupEvent {
   };
 }
 
-async function fetchMeetupGql(operationName: string, hash: string, variables: any) {
+async function fetchMeetupGql(operationName: string, hash: string | null, variables: any, query?: string) {
   try {
+    const body: any = {
+      operationName,
+      variables,
+    };
+
+    if (query) {
+      body.query = query;
+    } else if (hash) {
+      body.extensions = {
+        persistedQuery: {
+          version: 1,
+          sha256Hash: hash,
+        },
+      };
+    }
+
     const response = await fetch(GQL_ENDPOINT, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        operationName,
-        variables,
-        extensions: {
-          persistedQuery: {
-            version: 1,
-            sha256Hash: hash,
-          },
-        },
-      }),
+      body: JSON.stringify(body),
       next: { revalidate: 3600 },
     });
 
@@ -104,10 +132,10 @@ async function fetchMeetupGql(operationName: string, hash: string, variables: an
 
 export async function getMeetupEvents() {
   const now = new Date().toISOString();
-  const nodes = await fetchMeetupGql("getUpcomingGroupEvents", HASHES.upcoming, {
+  const nodes = await fetchMeetupGql("getUpcomingGroupEvents", null, {
     urlname: GROUP_URLNAME,
     afterDateTime: now,
-  });
+  }, UPCOMING_QUERY);
   return nodes.map(mapGqlEvent);
 }
 
