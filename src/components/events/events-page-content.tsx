@@ -12,6 +12,13 @@ type EventsPageContentProps = {
 };
 
 type EventFilter = "upcoming" | "past" | "all";
+type DateParts = {
+  year: number;
+  month: number;
+  day: number;
+};
+
+const EVENT_TIME_ZONE = "Asia/Kolkata";
 
 const revealVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -22,9 +29,34 @@ const revealVariants = {
   },
 };
 
+function getDateParts(date: Date, timeZone: string): DateParts | null {
+  if (Number.isNaN(date.getTime())) return null;
+
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone,
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+  }).formatToParts(date);
+
+  const year = Number(parts.find((part) => part.type === "year")?.value);
+  const month = Number(parts.find((part) => part.type === "month")?.value);
+  const day = Number(parts.find((part) => part.type === "day")?.value);
+
+  if (!year || !month || !day) return null;
+  return { year, month, day };
+}
+
+function compareDateParts(a: DateParts, b: DateParts) {
+  if (a.year !== b.year) return a.year - b.year;
+  if (a.month !== b.month) return a.month - b.month;
+  return a.day - b.day;
+}
+
 export function EventsPageContent({ events }: EventsPageContentProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [eventFilter, setEventFilter] = useState<EventFilter>("upcoming");
+  const today = getDateParts(new Date(), EVENT_TIME_ZONE);
 
   const filteredEvents = events.filter((event) => {
     const matchesSearch = event.title
@@ -33,10 +65,10 @@ export function EventsPageContent({ events }: EventsPageContentProps) {
     if (!matchesSearch) return false;
     if (eventFilter === "all") return true;
 
-    const eventDate = event.startsAt ? new Date(event.startsAt) : null;
-    const now = new Date();
+    const eventDate = event.startsAt ? getDateParts(new Date(event.startsAt), EVENT_TIME_ZONE) : null;
+    if (!eventDate || !today) return eventFilter !== "past";
 
-    const isPast = eventDate ? eventDate < now : false;
+    const isPast = compareDateParts(eventDate, today) < 0;
     return eventFilter === "past" ? isPast : !isPast;
   });
 
