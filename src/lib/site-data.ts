@@ -28,7 +28,7 @@ export const teams = {
         linkedin: "darshanb05",
         instagram: "bruh.darshan",
         twitter: "Dqrshan",
-        mail: "awscloudclubatria@gmail.com",
+        mail: "awssbgatria@gmail.com",
       },
     },
   ],

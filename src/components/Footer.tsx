@@ -1,10 +1,16 @@
-import { FaInstagram, FaLinkedin, FaMeetup, FaGithub, FaWhatsapp } from "react-icons/fa";
-import Link from 'next/link'
+import {
+  FaInstagram,
+  FaLinkedin,
+  FaMeetup,
+  FaGithub,
+  FaWhatsapp,
+} from "react-icons/fa";
+import Link from "next/link";
 
 export default function Footer() {
   return (
     <footer className="relative bg-primary text-white pt-20 md:pt-32 pb-12 overflow-hidden">
-      {/* Huge #AWSCloudClubs text */}
+      {/* Huge # text */}
       <div className="absolute inset-0 select-none pointer-events-none z-0 overflow-hidden flex items-end justify-center">
         <h2 className="text-[8vw] font-black uppercase tracking-tighter opacity-10 leading-none whitespace-nowrap">
           #AWSStudentBuilders
@@ -23,19 +29,39 @@ export default function Footer() {
           </div>
 
           <div className="flex gap-4">
-            <Link href="/join" target="_blank" className="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-white hover:text-primary transition-all rounded-sm group">
+            <Link
+              href="/join"
+              target="_blank"
+              className="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-white hover:text-primary transition-all rounded-sm group"
+            >
               <FaMeetup className="w-5 h-5 opacity-50 group-hover:opacity-100" />
             </Link>
-            <Link href="/instagram" target="_blank" className="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-white hover:text-primary transition-all rounded-sm group">
+            <Link
+              href="/instagram"
+              target="_blank"
+              className="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-white hover:text-primary transition-all rounded-sm group"
+            >
               <FaInstagram className="w-5 h-5 opacity-50 group-hover:opacity-100" />
             </Link>
-            <Link href="/linkedin" target="_blank" className="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-white hover:text-primary transition-all rounded-sm group">
+            <Link
+              href="/linkedin"
+              target="_blank"
+              className="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-white hover:text-primary transition-all rounded-sm group"
+            >
               <FaLinkedin className="w-5 h-5 opacity-50 group-hover:opacity-100" />
             </Link>
-            <Link href="/github" target="_blank" className="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-white hover:text-primary transition-all rounded-sm group">
+            <Link
+              href="/github"
+              target="_blank"
+              className="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-white hover:text-primary transition-all rounded-sm group"
+            >
               <FaGithub className="w-5 h-5 opacity-50 group-hover:opacity-100" />
             </Link>
-            <Link href="/whatsapp" target="_blank" className="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-white hover:text-primary transition-all rounded-sm group">
+            <Link
+              href="/whatsapp"
+              target="_blank"
+              className="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-white hover:text-primary transition-all rounded-sm group"
+            >
               <FaWhatsapp className="w-5 h-5 opacity-50 group-hover:opacity-100" />
             </Link>
           </div>
