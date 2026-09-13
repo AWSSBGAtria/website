@@ -23,7 +23,7 @@ export default function Footer() {
             <h3 className="text-4xl lg:text-5xl font-black uppercase tracking-tighter mb-4 leading-none">
               AWS Student Builder Group
             </h3>
-            <p className="text-white/40 font-bold uppercase tracking-[0.2em] text-[0.65rem]">
+            <p className="text-white/70 font-bold uppercase tracking-[0.2em] text-[0.65rem]">
               Atria Institute of Technology, Bengaluru
             </p>
           </div>
@@ -32,43 +32,53 @@ export default function Footer() {
             <Link
               href="/join"
               target="_blank"
-              className="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-white hover:text-primary transition-all rounded-sm group"
+              rel="noopener noreferrer"
+              aria-label="Join Meetup Group"
+              className="w-12 h-12 border border-white/20 flex items-center justify-center hover:bg-white hover:text-primary transition-all rounded-sm group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
-              <FaMeetup className="w-5 h-5 opacity-50 group-hover:opacity-100" />
+              <FaMeetup className="w-5 h-5 opacity-70 group-hover:opacity-100" />
             </Link>
             <Link
               href="/instagram"
               target="_blank"
-              className="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-white hover:text-primary transition-all rounded-sm group"
+              rel="noopener noreferrer"
+              aria-label="Instagram Profile"
+              className="w-12 h-12 border border-white/20 flex items-center justify-center hover:bg-white hover:text-primary transition-all rounded-sm group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
-              <FaInstagram className="w-5 h-5 opacity-50 group-hover:opacity-100" />
+              <FaInstagram className="w-5 h-5 opacity-70 group-hover:opacity-100" />
             </Link>
             <Link
               href="/linkedin"
               target="_blank"
-              className="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-white hover:text-primary transition-all rounded-sm group"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn Page"
+              className="w-12 h-12 border border-white/20 flex items-center justify-center hover:bg-white hover:text-primary transition-all rounded-sm group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
-              <FaLinkedin className="w-5 h-5 opacity-50 group-hover:opacity-100" />
+              <FaLinkedin className="w-5 h-5 opacity-70 group-hover:opacity-100" />
             </Link>
             <Link
               href="/github"
               target="_blank"
-              className="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-white hover:text-primary transition-all rounded-sm group"
+              rel="noopener noreferrer"
+              aria-label="GitHub Organization"
+              className="w-12 h-12 border border-white/20 flex items-center justify-center hover:bg-white hover:text-primary transition-all rounded-sm group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
-              <FaGithub className="w-5 h-5 opacity-50 group-hover:opacity-100" />
+              <FaGithub className="w-5 h-5 opacity-70 group-hover:opacity-100" />
             </Link>
             <Link
               href="/whatsapp"
               target="_blank"
-              className="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-white hover:text-primary transition-all rounded-sm group"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp Community"
+              className="w-12 h-12 border border-white/20 flex items-center justify-center hover:bg-white hover:text-primary transition-all rounded-sm group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
-              <FaWhatsapp className="w-5 h-5 opacity-50 group-hover:opacity-100" />
+              <FaWhatsapp className="w-5 h-5 opacity-70 group-hover:opacity-100" />
             </Link>
           </div>
         </div>
 
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
-          <span className="text-[0.65rem] font-bold uppercase tracking-[0.3em] text-white/50">
+          <span className="text-[0.65rem] font-bold uppercase tracking-[0.3em] text-white/70">
             © {new Date().getFullYear()} AWS Student Builder Group ATRIA.
           </span>
           {/* <div className="flex gap-8">

@@ -21,7 +21,7 @@ export const teams = {
     {
       name: "Darshan B",
       role: "AWS Student Builder Group Leader",
-      image: "/team/darshan.jpg",
+      image: "/team/darshan.webp",
       bio: "Computer Science student at Atria IT with a passion for cloud infrastructure and developer tooling. Founded the AWS Student Builder Group to give students a structured path into real-world cloud engineering — from core services to certification and beyond.",
       socials: {
         github: "Dqrshan",
@@ -36,7 +36,7 @@ export const teams = {
     {
       name: "Disha S",
       role: "Developer Relations & Operations Lead",
-      image: "/team/disha.jpeg",
+      image: "/team/disha.webp",
       socials: {
         github: "dishashiva",
         linkedin: "dishas05",
@@ -46,7 +46,7 @@ export const teams = {
     {
       name: "Ashitha G Kanchan",
       role: "Creative & Branding Lead",
-      image: "/team/ashitha.jpg",
+      image: "/team/ashitha.webp",
       socials: {
         github: "Ashitha-g-kanchan",
         linkedin: "ashitha-g-kanchan",
@@ -56,7 +56,7 @@ export const teams = {
     {
       name: "Harshini D",
       role: "Community & Events Lead",
-      image: "/team/harshini.jpg",
+      image: "/team/harshini.webp",
       socials: {
         github: "Harshini-projex",
         linkedin: "harshini-d-789764357",
@@ -66,7 +66,7 @@ export const teams = {
     {
       name: "B C H Benjamin",
       role: "Technical & Development Lead",
-      image: "/team/benjamin.jpg",
+      image: "/team/benjamin.webp",
       socials: {
         github: "bchbenjamin",
         linkedin: "bchbenjamin",
@@ -77,7 +77,7 @@ export const teams = {
     {
       name: "Aiman Shariff G",
       role: "Resources & Experience Lead",
-      image: "/team/shariff.jpeg",
+      image: "/team/shariff.webp",
       socials: {
         github: "aimanshariff19",
         linkedin: "aiman-shariff-357170330",
@@ -89,7 +89,7 @@ export const teams = {
     {
       name: "Adam Aneeq Aqwath K A",
       role: "Cloud Infrastructure Developer",
-      image: "/team/adam.jpg",
+      image: "/team/adam.webp",
       socials: {
         github: "adamaneeqaqwathka-arch",
         linkedin: "adam-aneeq-aqwath-k-a-",
@@ -98,7 +98,7 @@ export const teams = {
     {
       name: "Manoj Kumar J",
       role: "Cybersecurity Developer",
-      image: "/team/manoj.jpg",
+      image: "/team/manoj.webp",
       socials: {
         github: "manojkumar27-debug",
         linkedin: "manoj-kumar-j-872821366",
@@ -109,7 +109,7 @@ export const teams = {
     {
       name: "Aswin A",
       role: "Full-Stack Developer",
-      image: "/team/aswin.png",
+      image: "/team/aswin.webp",
       socials: {
         github: "ashbuildsites",
       },
@@ -117,7 +117,7 @@ export const teams = {
     {
       name: "C Yogeetha",
       role: "Full-Stack Developer",
-      image: "/team/yogeetha.jpeg",
+      image: "/team/yogeetha.webp",
       socials: {
         github: "gitGojo",
         linkedin: "c-yogeetha",
@@ -127,7 +127,7 @@ export const teams = {
     {
       name: "Dushyanth Yadav V",
       role: "Systems Architecture Developer",
-      image: "/team/dushyanth.jpeg",
+      image: "/team/dushyanth.webp",
       socials: {
         github: "Dushyanthyadav",
         linkedin: "dushyanthyadav",
@@ -137,7 +137,7 @@ export const teams = {
     {
       name: "Joy Princy S",
       role: "Systems Architecture Developer",
-      image: "/team/joy.jpg",
+      image: "/team/joy.webp",
       socials: {
         github: "joyprincy127",
         linkedin: "joy-princy-s-011775335",
@@ -159,7 +159,7 @@ export const teams = {
     {
       name: "N Nikhil",
       role: "Multimedia Creator",
-      image: "/team/nikhil.jpg",
+      image: "/team/nikhil.webp",
       socials: {
         github: "nikhil-245",
         linkedin: "n-nikhil-21a187328",
@@ -168,7 +168,7 @@ export const teams = {
     {
       name: "Abhay Sharma",
       role: "Post-Production Creator",
-      image: "/team/abhay.jpg",
+      image: "/team/abhay.webp",
       socials: {
         github: "Abhay-Code-Bit",
         linkedin: "sharmaabhay-tech",
@@ -180,7 +180,7 @@ export const teams = {
     {
       name: "Syed Farhan Fawad",
       role: "Campus PR Coordinator",
-      image: "/team/farhan.jpg",
+      image: "/team/farhan.webp",
       socials: {
         github: "farhanfawad007",
         linkedin: "syed-farhan-fawad",
@@ -190,7 +190,7 @@ export const teams = {
     {
       name: "Mariam Farheen Saif",
       role: "Crowd Engagement Coordinator",
-      image: "/team/mariam.jpeg",
+      image: "/team/mariam.webp",
       socials: {
         linkedin: "mariam-farheen-saif-747701337",
         instagram: "mariam_saif04",
@@ -199,7 +199,7 @@ export const teams = {
     {
       name: "Abhishek Kumar",
       role: "Event Logistics Coordinator",
-      image: "/team/abhishek.png",
+      image: "/team/abhishek.webp",
       socials: {
         github: "JustAbhie",
         linkedin: "abhishek-kumar-55178133b",
@@ -209,7 +209,7 @@ export const teams = {
     {
       name: "Blessen Thomas",
       role: "Event Logistics Coordinator",
-      image: "/team/blessen.jpg",
+      image: "/team/blessen.webp",
       socials: {
         github: "blessen-thomas",
         linkedin: "blessen-thomas-664b58355",
@@ -219,7 +219,7 @@ export const teams = {
     {
       name: "Ratan Kumar B V",
       role: "Event Logistics Coordinator",
-      image: "/team/ratan.jpeg",
+      image: "/team/ratan.webp",
       socials: {
         linkedin: "ratan-kumar-bv-194135282",
         instagram: "ratan_bv",
@@ -230,7 +230,7 @@ export const teams = {
     {
       name: "Chitrashree G",
       role: "Guest Experience Operator",
-      image: "/team/chitrashree.jpg",
+      image: "/team/chitrashree.webp",
       socials: {
         github: "Chitrashree13",
         linkedin: "chitrashree-g",
@@ -239,7 +239,7 @@ export const teams = {
     {
       name: "N M Meghashree",
       role: "Guest Experience Operator",
-      image: "/team/meghashree.png",
+      image: "/team/meghashree.webp",
       socials: {
         github: "meghashreenm2006",
         linkedin: "nm-megha-shree-51784b344",
@@ -249,7 +249,7 @@ export const teams = {
     {
       name: "Baby V S",
       role: "Onboarding Operator",
-      image: "/team/baby.jpg",
+      image: "/team/baby.webp",
       socials: {
         linkedin: "baby-v-s",
       },
@@ -257,7 +257,7 @@ export const teams = {
     {
       name: "Sanjana C P",
       role: "Onboarding Operator",
-      image: "/team/sanjana.jpg",
+      image: "/team/sanjana.webp",
       socials: {
         github: "sanjana-cp",
         linkedin: "sanjana-c-p-457b72334",
@@ -268,7 +268,7 @@ export const teams = {
     {
       name: "Krishna Bhat U",
       role: "Tech Resource Operator",
-      image: "/team/krishna.jpeg",
+      image: "/team/krishna.webp",
       socials: {
         github: "krx7h",
         linkedin: "krishnabhatu",

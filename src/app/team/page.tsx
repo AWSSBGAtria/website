@@ -35,6 +35,23 @@ const socialIcons: Record<SocialPlatform, React.ReactNode> = {
   instagram: <Instagram className="h-4 w-4" />,
 };
 
+const teamGlows: Record<string, string> = {
+  leader:
+    "radial-gradient(circle at 50% 42%, transparent 0%, rgba(79,70,229,0.22) 55%, rgba(79,70,229,0.22) 100%)",
+  core: "radial-gradient(circle at 50% 42%, transparent 0%, rgba(202,162,39,0.25) 55%, rgba(202,162,39,0.25) 100%)",
+  technical:
+    "radial-gradient(circle at 50% 42%, transparent 0%, rgba(37,99,235,0.22) 55%, rgba(37,99,235,0.22) 100%)",
+  media:
+    "radial-gradient(circle at 50% 42%, transparent 0%, rgba(236,72,153,0.22) 55%, rgba(236,72,153,0.22) 100%)",
+  operations:
+    "radial-gradient(circle at 50% 42%, transparent 0%, rgba(22,163,74,0.22) 55%, rgba(22,163,74,0.22) 100%)",
+  events:
+    "radial-gradient(circle at 50% 42%, transparent 0%, rgba(249,115,22,0.25) 55%, rgba(249,115,22,0.25) 100%)",
+};
+
+const teamGlowFallback =
+  "radial-gradient(circle at 50% 42%, transparent 0%, rgba(100,116,139,0.20) 55%, rgba(100,116,139,0.20) 100%)";
+
 const getSocialUrl = (platform: SocialPlatform, username: string) => {
   if (!username || username === "#") return "#";
   switch (platform) {
@@ -62,6 +79,8 @@ function MemberCard({
   category: string;
   index: number;
 }) {
+  const glow = teamGlows[category.toLowerCase()] ?? teamGlowFallback;
+
   return (
     <motion.div
       initial="hidden"
@@ -71,14 +90,17 @@ function MemberCard({
       transition={{ delay: index * 0.05 }}
       className="group"
     >
-      <div className="aspect-4/5 bg-slate-100 border border-border mb-8 overflow-hidden relative">
+      <div
+        className="aspect-4/5 border border-border overflow-hidden relative mb-8"
+        style={{ background: glow }}
+      >
         <img
           src={
             member.image ||
             `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(member.name)}`
           }
           alt={member.name}
-          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105 relative"
         />
         <div className="absolute top-4 left-4 bg-white px-3 py-1 border border-border text-[0.6rem] font-black uppercase tracking-widest">
           {category}
@@ -87,7 +109,7 @@ function MemberCard({
       <h3 className="text-2xl font-black tracking-tighter text-secondary mb-1 uppercase leading-none">
         {member.name}
       </h3>
-      <p className="text-[0.7rem] font-bold uppercase tracking-widest text-secondary/40 mb-6">
+      <p className="text-[0.7rem] font-bold uppercase tracking-widest text-secondary/70 mb-6">
         {member.role}
       </p>
 
@@ -98,7 +120,8 @@ function MemberCard({
             href={getSocialUrl(platform as SocialPlatform, username ?? "")}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-8 h-8 border border-border flex items-center justify-center text-secondary/40 hover:bg-secondary hover:text-white hover:border-secondary transition-all"
+            aria-label={`${member.name}'s ${platform}`}
+            className="w-8 h-8 border border-border flex items-center justify-center text-secondary/60 hover:bg-secondary hover:text-white hover:border-secondary transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             {socialIcons[platform as SocialPlatform]}
           </a>
@@ -132,7 +155,7 @@ export default function TeamPage() {
             <h1 className="text-6xl lg:text-8xl font-black tracking-tighter leading-[0.9] text-secondary mb-8">
               The builders <br /> behind the <br /> community.
             </h1>
-            <p className="text-xl text-secondary/60 font-medium leading-relaxed max-w-2xl">
+            <p className="text-xl text-secondary/70 font-medium leading-relaxed max-w-2xl">
               Meet the dedicated students working to build the best tech
               community at Atria Institute of Technology.
             </p>
@@ -142,24 +165,29 @@ export default function TeamPage() {
 
       {/* Leader Section */}
       {leader && (
-        <section className="py-32 border-b border-border bg-slate-50/30">
+        <section className="py-24 lg:py-32 border-b border-border bg-slate-50/30">
           <div className="container px-8 mx-auto">
-            <div className="grid lg:grid-cols-2 gap-24 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
               <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={revealVariants}
-                className="aspect-square bg-white border border-border overflow-hidden relative"
+                className="max-w-md mx-auto lg:max-w-none w-full"
               >
-                <img
-                  src={
-                    leader.image ||
-                    `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(leader.name)}`
-                  }
-                  alt={leader.name}
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                />
+                <div
+                  className="aspect-4/5 border border-border overflow-hidden relative"
+                  style={{ background: teamGlows.leader }}
+                >
+                  <img
+                    src={
+                      leader.image ||
+                      `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(leader.name)}`
+                    }
+                    alt={leader.name}
+                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 relative"
+                  />
+                </div>
               </motion.div>
 
               <motion.div
@@ -171,13 +199,13 @@ export default function TeamPage() {
                 <span className="text-[0.7rem] font-bold uppercase tracking-[0.3em] text-primary mb-4 block">
                   Leader / President / Club Head
                 </span>
-                <h2 className="text-5xl lg:text-7xl font-black tracking-tighter text-secondary mb-6 leading-none uppercase">
+                <h2 className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tighter text-secondary mb-6 leading-none uppercase">
                   {leader.name}
                 </h2>
-                <p className="text-[0.8rem] font-black uppercase tracking-widest text-secondary/40 mb-8">
+                <p className="text-[0.8rem] font-black uppercase tracking-widest text-secondary/60 mb-8">
                   {leader.role}
                 </p>
-                <p className="text-lg text-secondary/60 font-medium leading-relaxed mb-12 max-w-lg">
+                <p className="text-base sm:text-lg text-secondary/70 font-medium leading-relaxed mb-12 max-w-lg">
                   {leader.bio}
                 </p>
                 <div className="flex gap-4">
@@ -191,7 +219,8 @@ export default function TeamPage() {
                         )}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-12 h-12 border border-border flex items-center justify-center text-secondary/40 hover:bg-secondary hover:text-white hover:border-secondary transition-all"
+                        aria-label={`${leader.name}'s ${platform}`}
+                        className="w-12 h-12 border border-border flex items-center justify-center text-secondary/60 hover:bg-secondary hover:text-white hover:border-secondary transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                       >
                         {socialIcons[platform as SocialPlatform]}
                       </a>

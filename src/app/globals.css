@@ -2,15 +2,16 @@
 @import "../../node_modules/tw-animate-css/dist/tw-animate.css";
 
 @theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
   --color-destructive-foreground: var(--destructive-foreground);
   --color-primary: #4F46E5;
   --color-secondary: #000000;
+  --color-navy: #161E2E;
   --color-border: #E2E8F0;
   --color-bg: #FFFFFF;
   --color-text: #000000;
-  --font-display: var(--font-space-grotesk);
 }
 
 :root {
@@ -91,7 +92,8 @@ body {
 }
 
 /* Geometric Grid - applied to body or outer edges */
-.geometric-grid {
+.geometric-grid,
+.page-grid {
   background-image:
     linear-gradient(to right, rgba(35, 47, 62, 0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(35, 47, 62, 0.05) 1px, transparent 1px);
@@ -158,6 +160,10 @@ body {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-primary);
+}
+
+.body-balance {
+  text-wrap: balance;
 }
 
 /* Animations */

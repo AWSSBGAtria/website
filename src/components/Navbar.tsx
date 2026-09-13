@@ -32,14 +32,15 @@ export default function Navbar() {
           <div className="w-17.5 flex items-center justify-center border-r border-border">
             <Link
               href="/"
-              className="flex items-center justify-center w-full h-full text-primary hover:scale-110 transition-transform"
+              aria-label="AWS Student Builder Group Home"
+              className="flex items-center justify-center w-full h-full text-primary hover:scale-110 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset"
               onClick={() => setIsMenuOpen(false)}
             >
               <Image
                 src="/Program_Icon.svg"
                 width={28}
                 height={28}
-                alt={"Program Icon"}
+                alt={"AWS Student Builder Group Logo"}
               />
             </Link>
           </div>
@@ -51,7 +52,7 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMenuOpen(false)}
-                className={`px-8 flex items-center text-[0.7rem] font-bold uppercase tracking-[0.2em] border-r border-border transition-colors ${pathname === link.href ? "text-primary bg-slate-50" : "text-secondary/60 hover:text-primary hover:bg-slate-50"}`}
+                className={`px-8 flex items-center text-[0.7rem] font-bold uppercase tracking-[0.2em] border-r border-border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset ${pathname === link.href ? "text-primary bg-slate-50 font-extrabold" : "text-secondary/70 hover:text-primary hover:bg-slate-50"}`}
               >
                 {link.name}
               </Link>
@@ -63,7 +64,7 @@ export default function Navbar() {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden w-17.5 flex items-center justify-center border-l border-border text-secondary hover:text-primary transition-colors"
+            className="md:hidden w-17.5 flex items-center justify-center border-l border-border text-secondary hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             aria-label="Toggle Menu"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -72,8 +73,9 @@ export default function Navbar() {
           <Link
             href="/join"
             target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setIsMenuOpen(false)}
-            className="bg-primary text-white px-6 md:px-10 flex items-center text-[0.6rem] md:text-[0.7rem] font-bold uppercase tracking-[0.2em] hover:bg-indigo-700 transition-colors border-l border-border md:border-l-0"
+            className="bg-primary text-white px-6 md:px-10 flex items-center text-[0.65rem] md:text-[0.7rem] font-bold uppercase tracking-[0.2em] hover:bg-primary/90 transition-colors border-l border-border md:border-l-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset"
           >
             Join The Club ↗
           </Link>
@@ -96,7 +98,7 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`px-8 py-6 flex items-center justify-between border-b border-border/50 last:border-b-0 transition-colors ${pathname === link.href ? "bg-slate-50 text-primary" : "text-secondary/60 active:bg-slate-100"}`}
+                  className={`px-8 py-6 flex items-center justify-between border-b border-border/50 last:border-b-0 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset ${pathname === link.href ? "bg-slate-50 text-primary" : "text-secondary/70 active:bg-slate-100"}`}
                 >
                   <span className="text-[0.8rem] font-black uppercase tracking-[0.3em]">
                     {link.name}
@@ -107,7 +109,7 @@ export default function Navbar() {
                 </Link>
               ))}
               <div className="p-8 bg-slate-50 flex flex-col gap-4">
-                <span className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-secondary/40">
+                <span className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-secondary/60">
                   Connect With Us
                 </span>
                 <div className="flex gap-4">
@@ -116,8 +118,9 @@ export default function Navbar() {
                       key={social.name}
                       href={social.href}
                       target="_blank"
+                      rel="noopener noreferrer"
                       onClick={() => setIsMenuOpen(false)}
-                      className="w-12 h-12 border border-border bg-white flex items-center justify-center text-secondary/60 hover:text-primary transition-all rounded-sm shadow-sm"
+                      className="w-12 h-12 border border-border bg-white flex items-center justify-center text-secondary/70 hover:text-primary hover:border-primary transition-all rounded-sm shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                       aria-label={social.name}
                     >
                       <social.icon size={20} />

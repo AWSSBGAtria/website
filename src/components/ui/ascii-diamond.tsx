@@ -23,9 +23,20 @@ export default function AsciiDiamond({
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
+    let isVisible = true;
     const density = " .:-=+*#%@";
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const wasVisible = isVisible;
+        isVisible = entry.isIntersecting;
+        if (!wasVisible && isVisible) {
+          frameRef.current = requestAnimationFrame(render);
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(canvas);
 
     const generateOctahedron = (step: number) => {
       const pts: any[] = [];
@@ -80,6 +91,7 @@ export default function AsciiDiamond({
     resize();
 
     function render() {
+      if (!isVisible) return;
       const width = canvas?.width || size;
       const height = canvas?.height || size;
 
@@ -174,6 +186,7 @@ export default function AsciiDiamond({
 
     render();
     return () => {
+      observer.disconnect();
       window.removeEventListener("resize", resize);
       cancelAnimationFrame(frameRef.current);
     };

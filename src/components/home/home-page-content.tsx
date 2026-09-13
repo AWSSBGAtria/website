@@ -31,7 +31,7 @@ export function HomePageContent() {
         <div className="absolute inset-0 opacity-10">
           <CloudBackground />
         </div>
-        <div className="absolute right-0 top-0 bottom-0 w-full lg:w-1/2 opacity-80 pointer-events-none flex items-center justify-center">
+        <div className="hidden lg:flex absolute right-0 top-0 bottom-0 w-1/2 opacity-80 pointer-events-none items-center justify-center">
           <RotatingEarth width={500} height={500} />
         </div>
         <div className="container relative z-10 px-8 mx-auto">
@@ -44,13 +44,10 @@ export function HomePageContent() {
             <span className="text-[0.7rem] font-bold uppercase tracking-[0.3em] text-primary mb-6 block">
               Our Mission
             </span>
-            <h2 className="text-[6vw] lg:text-[4vw] font-black leading-[1.1] tracking-tighter text-white uppercase mb-4">
+            <h2 className="text-4xl sm:text-[6vw] lg:text-[4vw] font-black leading-[1.1] tracking-tighter text-white uppercase mb-4 max-w-3xl">
               Building the <br /> cloud talent <br /> of{" "}
               <span className="text-primary">tomorrow</span>.
             </h2>
-            {/* <h3 className="text-[5vw] lg:text-[3vw] font-black leading-[1.1] tracking-tighter text-primary uppercase">
-              AWS Student Builder Group <br /> Atria Institute
-            </h3> */}
           </motion.div>
         </div>
       </section>
@@ -66,30 +63,30 @@ export function HomePageContent() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={revealVariants}
-            className="mb-20"
+            className="mb-16 md:mb-20"
           >
-            <h2 className="text-6xl lg:text-8xl font-black tracking-tighter leading-[0.9] text-secondary">
+            <h2 className="text-4xl sm:text-6xl lg:text-8xl font-black tracking-tighter leading-[0.95] md:leading-[0.9] text-secondary">
               A community where <br /> curiosity meets <br />{" "}
               <span className="text-primary">capability</span>
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {/* Card 1: 3D Cylinder */}
             <motion.div
               variants={revealVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="aspect-square bg-slate-100 rounded-xl md:rounded-4xl flex items-center justify-center p-3 md:p-12"
+              className="aspect-square bg-slate-100 rounded-2xl md:rounded-4xl flex items-center justify-center p-4 md:p-10 border border-border/50"
             >
-              <div className="w-full h-full bg-primary rounded-lg md:rounded-2xl shadow-[0_10px_30px_rgba(79,70,229,0.2)] md:shadow-[0_20px_50px_rgba(79,70,229,0.3)] transform -rotate-3 flex items-center justify-center text-white font-black text-xs md:text-2xl">
+              <div className="w-full h-full bg-primary rounded-xl md:rounded-2xl shadow-[0_10px_30px_rgba(79,70,229,0.2)] md:shadow-[0_20px_50px_rgba(79,70,229,0.3)] transform -rotate-3 flex items-center justify-center text-white font-black">
                 <Image
                   src="/AWS.svg"
-                  alt="Logo"
-                  width={40}
-                  height={40}
-                  className="w-6 h-6 md:w-24 md:h-24"
+                  alt="AWS Logo"
+                  width={64}
+                  height={64}
+                  className="w-12 h-12 md:w-20 md:h-20"
                 />
               </div>
             </motion.div>
@@ -101,11 +98,11 @@ export function HomePageContent() {
               whileInView="visible"
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="aspect-square bg-slate-200 rounded-xl md:rounded-4xl overflow-hidden group"
+              className="aspect-square bg-slate-200 rounded-2xl md:rounded-4xl overflow-hidden group border border-border/50"
             >
               <img
                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800"
-                alt="Community"
+                alt="Community Builders collaborating"
                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
               />
             </motion.div>
@@ -117,7 +114,7 @@ export function HomePageContent() {
               whileInView="visible"
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="aspect-square bg-primary rounded-xl md:rounded-4xl flex items-center justify-center p-3 md:p-12 shadow-[0_20px_40px_rgba(79,70,229,0.1)] md:shadow-[0_20px_40px_rgba(79,70,229,0.2)]"
+              className="aspect-square bg-primary rounded-2xl md:rounded-4xl flex items-center justify-center p-4 md:p-10 shadow-[0_20px_40px_rgba(79,70,229,0.1)] md:shadow-[0_20px_40px_rgba(79,70,229,0.2)]"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -126,7 +123,7 @@ export function HomePageContent() {
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="w-6 h-6 md:w-24 md:h-24"
+                className="w-12 h-12 md:w-20 md:h-20"
               >
                 <polyline points="16 18 22 12 16 6"></polyline>
                 <polyline points="8 6 2 12 8 18"></polyline>
@@ -140,12 +137,12 @@ export function HomePageContent() {
               whileInView="visible"
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="aspect-square bg-slate-50 rounded-xl md:rounded-4xl border border-border flex items-center justify-center overflow-hidden relative"
+              className="aspect-square bg-slate-50 rounded-2xl md:rounded-4xl border border-border flex items-center justify-center overflow-hidden relative"
             >
               <div className="absolute inset-0 opacity-20">
                 <AsciiCodeRain />
               </div>
-              <div className="relative z-10 text-primary font-black uppercase tracking-widest md:tracking-widest text-[0.4rem] md:text-xs text-center px-1">
+              <div className="relative z-10 text-primary font-black uppercase tracking-widest text-xs md:text-sm text-center px-2">
                 Deployment
               </div>
             </motion.div>
@@ -155,12 +152,12 @@ export function HomePageContent() {
 
       {/* Be with your people Section */}
       <section className="py-24 bg-white border-t border-border">
-        <div className="container px-8 mx-auto grid lg:grid-cols-2 gap-24 items-center">
+        <div className="container px-8 mx-auto grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="aspect-square bg-slate-50 rounded-[3rem] border border-border overflow-hidden relative group"
+            className="aspect-square bg-slate-50 rounded-[2rem] md:rounded-[3rem] border border-border overflow-hidden relative group max-w-lg mx-auto w-full"
           >
             <div className="absolute inset-0 z-0">
               <AsciiSphere size={500} opacity={0.6} />
@@ -178,10 +175,10 @@ export function HomePageContent() {
               <span className="text-[0.7rem] font-bold uppercase tracking-[0.3em] text-primary mb-4 block">
                 Our Culture
               </span>
-              <h2 className="text-5xl lg:text-6xl font-black tracking-tighter text-secondary mb-6 leading-none">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tighter text-secondary mb-6 leading-none">
                 Be with your people
               </h2>
-              <p className="text-lg text-secondary/60 font-medium leading-relaxed max-w-lg">
+              <p className="text-base sm:text-lg text-secondary/70 font-medium leading-relaxed max-w-lg">
                 Connect with fellow student developers who are passionate about
                 the cloud. Share ideas, collaborate on projects, and grow
                 together in a supportive environment designed for builders.
@@ -193,7 +190,7 @@ export function HomePageContent() {
                 <span className="text-[0.7rem] font-bold uppercase tracking-[0.3em] text-primary mb-2 block">
                   Monthly
                 </span>
-                <p className="text-3xl font-black tracking-tighter text-secondary">
+                <p className="text-2xl sm:text-3xl font-black tracking-tighter text-secondary">
                   MEETUPS
                 </p>
               </div>
@@ -201,7 +198,7 @@ export function HomePageContent() {
                 <span className="text-[0.7rem] font-bold uppercase tracking-[0.3em] text-primary mb-2 block">
                   Hands-on
                 </span>
-                <p className="text-3xl font-black tracking-tighter text-secondary">
+                <p className="text-2xl sm:text-3xl font-black tracking-tighter text-secondary">
                   WORKSHOPS
                 </p>
               </div>
@@ -228,7 +225,8 @@ export function HomePageContent() {
             <Link
               href={"/join"}
               target={"_blank"}
-              className="inline-block px-6 md:px-16 py-4 md:py-6 bg-white text-primary font-black uppercase tracking-widest text-sm md:text-lg hover:bg-slate-100 transition-colors rounded-lg"
+              rel="noopener noreferrer"
+              className="inline-block px-8 sm:px-16 py-4 sm:py-6 bg-white text-primary font-black uppercase tracking-widest text-sm sm:text-lg hover:bg-slate-100 transition-all rounded-lg focus-visible:ring-4 focus-visible:ring-white/40 focus-visible:outline-none"
             >
               Become a Member Now
             </Link>

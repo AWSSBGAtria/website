@@ -14,10 +14,6 @@ export type MeetupEvent = {
 const GQL_ENDPOINT = "https://www.meetup.com/gql2";
 const GROUP_URLNAME = "aws-sbg-at-atria-inst-of-tech";
 
-const HASHES = {
-  past: "321388b1e4a11b17a57efe3ae7a90abfecbc703a4f4e99519772294924c21351",
-};
-
 const UPCOMING_QUERY = `query getUpcomingGroupEvents($urlname: String!, $afterDateTime: DateTime!) {
   groupByUrlname(urlname: $urlname) {
     id
@@ -32,8 +28,30 @@ const UPCOMING_QUERY = `query getUpcomingGroupEvents($urlname: String!, $afterDa
           isOnline
           eventType
           venue { name }
-          featuredEventPhoto { baseUrl }
-          displayPhoto { baseUrl }
+          featuredEventPhoto { baseUrl highResUrl }
+          displayPhoto { baseUrl highResUrl }
+        }
+      }
+    }
+  }
+}`;
+
+const PAST_QUERY = `query getPastGroupEvents($urlname: String!, $beforeDateTime: DateTime!) {
+  groupByUrlname(urlname: $urlname) {
+    id
+    events(filter: { beforeDateTime: $beforeDateTime, status: [PAST] }) {
+      edges {
+        node {
+          id
+          title
+          dateTime
+          eventUrl
+          description
+          isOnline
+          eventType
+          venue { name }
+          featuredEventPhoto { baseUrl highResUrl }
+          displayPhoto { baseUrl highResUrl }
         }
       }
     }
@@ -87,34 +105,26 @@ function mapGqlEvent(node: any): MeetupEvent {
     type: node.eventType?.toLowerCase() || "meetup",
     link: node.eventUrl,
     description: plainDescription,
-    image: node.image?.baseUrl || node.featuredEventPhoto?.baseUrl || null,
+    image:
+      node.featuredEventPhoto?.highResUrl ||
+      node.displayPhoto?.highResUrl ||
+      node.image?.highResUrl ||
+      null,
   };
 }
 
-async function fetchMeetupGql(operationName: string, hash: string | null, variables: any, query?: string) {
+async function fetchMeetupGql(operationName: string, variables: any, query: string) {
   try {
-    const body: any = {
-      operationName,
-      variables,
-    };
-
-    if (query) {
-      body.query = query;
-    } else if (hash) {
-      body.extensions = {
-        persistedQuery: {
-          version: 1,
-          sha256Hash: hash,
-        },
-      };
-    }
-
     const response = await fetch(GQL_ENDPOINT, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify({
+        operationName,
+        variables,
+        query,
+      }),
       next: { revalidate: 3600 },
     });
 
@@ -132,7 +142,7 @@ async function fetchMeetupGql(operationName: string, hash: string | null, variab
 
 export async function getMeetupEvents() {
   const now = new Date().toISOString();
-  const nodes = await fetchMeetupGql("getUpcomingGroupEvents", null, {
+  const nodes = await fetchMeetupGql("getUpcomingGroupEvents", {
     urlname: GROUP_URLNAME,
     afterDateTime: now,
   }, UPCOMING_QUERY);
@@ -141,10 +151,10 @@ export async function getMeetupEvents() {
 
 export async function getPastEvents() {
   const now = new Date().toISOString();
-  const nodes = await fetchMeetupGql("getPastGroupEvents", HASHES.past, {
+  const nodes = await fetchMeetupGql("getPastGroupEvents", {
     urlname: GROUP_URLNAME,
     beforeDateTime: now,
-  });
+  }, PAST_QUERY);
   return nodes.map(mapGqlEvent);
 }
 

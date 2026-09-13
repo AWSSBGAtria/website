@@ -11,10 +11,23 @@ export default function AsciiCodeRain({ className = "" }: { className?: string }
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    let isVisible = true;
     let animationFrameId: number;
     const columns = Math.floor(canvas.offsetWidth / 20);
     const drops: number[] = new Array(columns).fill(0);
     const chars = "AWSCLOUD01";
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const wasVisible = isVisible;
+        isVisible = entry.isIntersecting;
+        if (!wasVisible && isVisible) {
+          animationFrameId = requestAnimationFrame(draw);
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(canvas);
 
     const resize = () => {
       canvas.width = canvas.offsetWidth;
@@ -22,6 +35,7 @@ export default function AsciiCodeRain({ className = "" }: { className?: string }
     };
 
     const draw = () => {
+      if (!isVisible) return;
       ctx.fillStyle = "rgba(255, 255, 255, 0.1)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -46,6 +60,7 @@ export default function AsciiCodeRain({ className = "" }: { className?: string }
     draw();
 
     return () => {
+      observer.disconnect();
       window.removeEventListener("resize", resize);
       cancelAnimationFrame(animationFrameId);
     };

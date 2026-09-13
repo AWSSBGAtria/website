@@ -8,7 +8,7 @@ export function Card({
   children: React.ReactNode;
 }) {
   return (
-    <div className={cn("geometric-block overflow-hidden bg-white", className)}>
+    <div className={cn("border border-border bg-white overflow-hidden shadow-xs", className)}>
       {children}
     </div>
   );
@@ -24,7 +24,7 @@ export function CardHeader({
   return (
     <div
       className={cn(
-        "flex flex-col gap-3 p-6 border-b border-[#7c5aed]/10",
+        "flex flex-col gap-2 p-6 border-b border-border/50",
         className,
       )}
     >
@@ -43,7 +43,7 @@ export function CardTitle({
   return (
     <h3
       className={cn(
-        "font-display text-2xl font-black uppercase leading-none tracking-tight text-[#1a1a1b]",
+        "font-display text-2xl font-black uppercase leading-none tracking-tight text-secondary",
         className,
       )}
     >
@@ -62,7 +62,7 @@ export function CardDescription({
   return (
     <p
       className={cn(
-        "text-sm font-medium leading-relaxed text-[#1a1a1b]/50",
+        "text-sm font-medium leading-relaxed text-secondary/70",
         className,
       )}
     >

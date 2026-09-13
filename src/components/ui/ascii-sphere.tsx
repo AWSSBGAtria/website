@@ -29,7 +29,20 @@ export default function AsciiSphere({
     const frontCtx = frontCanvas.getContext("2d");
     if (!ctx || !frontCtx) return;
 
+    let isVisible = true;
     const density = " .:-=+*#%@";
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const wasVisible = isVisible;
+        isVisible = entry.isIntersecting;
+        if (!wasVisible && isVisible) {
+          frameRef.current = requestAnimationFrame(render);
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(canvas);
 
     const resize = () => {
       const parent = canvas.parentElement;
@@ -44,6 +57,8 @@ export default function AsciiSphere({
     resize();
 
     function render() {
+      if (!isVisible) return;
+
       const width = canvas?.width || size;
       const height = canvas?.height || size;
       const centerX = width / 2;
@@ -181,6 +196,7 @@ export default function AsciiSphere({
 
     render();
     return () => {
+      observer.disconnect();
       window.removeEventListener("resize", resize);
       cancelAnimationFrame(frameRef.current);
     };

@@ -114,12 +114,12 @@ export function EventsPageContent({ events }: EventsPageContentProps) {
             />
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex gap-2 flex-wrap">
             {(["upcoming", "past", "all"] as EventFilter[]).map((filter) => (
               <button
                 key={filter}
                 onClick={() => setEventFilter(filter)}
-                className={`px-6 py-3 text-[0.65rem] font-black uppercase tracking-widest transition-all border ${
+                className={`px-6 py-3 text-[0.65rem] font-black uppercase tracking-widest transition-all border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
                   eventFilter === filter
                     ? "bg-secondary text-white border-secondary"
                     : "bg-white text-secondary border-border hover:border-secondary"
@@ -142,7 +142,7 @@ export function EventsPageContent({ events }: EventsPageContentProps) {
               ))
             ) : (
               <div className="col-span-full py-32 text-center border border-dashed border-border">
-                <p className="text-secondary/30 font-black uppercase tracking-[0.2em]">
+                <p className="text-secondary/50 font-black uppercase tracking-[0.2em]">
                   No events found
                 </p>
               </div>
@@ -183,7 +183,7 @@ function MeetupEventCard({
           />
         ) : (
           <div className="absolute inset-0 bg-primary/5 flex flex-col items-center justify-center p-8 text-center border-2 border-dashed border-primary/20 group-hover:bg-primary/10 transition-colors">
-            <span className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-primary mb-2 opacity-50">
+            <span className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-primary mb-2 opacity-70">
               AWS Student Builders
             </span>
             <span className="text-xl font-black uppercase tracking-tighter text-secondary leading-none max-w-62.5">
@@ -203,18 +203,19 @@ function MeetupEventCard({
           {event.title}
         </h3>
       </div>
-      <p className="text-secondary/60 font-medium mb-8 line-clamp-3 leading-relaxed">
+      <p className="text-secondary/70 font-medium mb-8 line-clamp-3 leading-relaxed">
         {event.description}
       </p>
-      <div className="flex items-center gap-3 mb-8 text-[0.65rem] font-bold uppercase tracking-widest text-secondary/40">
-        <MapPin className="w-4 h-4 text-primary" />
+      <div className="flex items-center gap-3 mb-8 text-[0.65rem] font-bold uppercase tracking-widest text-secondary/60">
+        <MapPin className="w-4 h-4 text-primary shrink-0" />
         {event.location}
       </div>
       <a
         href={event.link}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-4 px-8 py-4 border border-secondary text-secondary text-[0.7rem] font-black uppercase tracking-widest hover:bg-secondary hover:text-white transition-all"
+        aria-label={`RSVP for ${event.title} on Meetup`}
+        className="inline-flex items-center gap-4 px-8 py-4 border border-secondary text-secondary text-[0.7rem] font-black uppercase tracking-widest hover:bg-secondary hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
       >
         RSVP ON MEETUP <ExternalLink className="w-4 h-4" />
       </a>

@@ -40,7 +40,7 @@ export default function AboutPage() {
             <h1 className="text-6xl lg:text-8xl font-black tracking-tighter leading-[0.9] text-secondary mb-8">
               Community built <br /> around <br /> practice.
             </h1>
-            <p className="text-xl text-secondary/60 font-medium leading-relaxed max-w-2xl">
+            <p className="text-xl text-secondary/70 font-medium leading-relaxed max-w-2xl">
               AWS Student Builder Group at Atria is for students who want
               hands-on cloud work, sharper technical foundations, and a space to
               build with others.
@@ -50,23 +50,23 @@ export default function AboutPage() {
       </section>
 
       {/* Vision/Mission Section */}
-      <section className="py-32 border-b border-border bg-slate-50/30">
+      <section className="py-24 lg:py-32 border-b border-border bg-slate-50/30">
         <div className="container px-8 mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={revealVariants}
-              className="p-12 bg-white border border-border group"
+              className="p-8 sm:p-12 bg-white border border-border group shadow-xs"
             >
               <div className="w-16 h-16 bg-slate-100 flex items-center justify-center mb-8 border border-border group-hover:border-primary transition-colors">
                 <Target className="w-8 h-8 text-primary" />
               </div>
-              <h2 className="text-4xl font-black tracking-tighter text-secondary mb-6 uppercase">
+              <h2 className="text-3xl sm:text-4xl font-black tracking-tighter text-secondary mb-6 uppercase">
                 Our Vision
               </h2>
-              <p className="text-lg text-secondary/60 font-medium leading-relaxed">
+              <p className="text-base sm:text-lg text-secondary/70 font-medium leading-relaxed">
                 To cultivate a community of cloud-native builders who actively
                 shape the future of technology by mastering Amazon Web Services
                 and participating in the global developer ecosystem.
@@ -79,15 +79,15 @@ export default function AboutPage() {
               viewport={{ once: true }}
               variants={revealVariants}
               transition={{ delay: 0.1 }}
-              className="p-12 bg-white border border-border group"
+              className="p-8 sm:p-12 bg-white border border-border group shadow-xs"
             >
               <div className="w-16 h-16 bg-slate-100 flex items-center justify-center mb-8 border border-border group-hover:border-primary transition-colors">
                 <Users className="w-8 h-8 text-primary" />
               </div>
-              <h2 className="text-4xl font-black tracking-tighter text-secondary mb-6 uppercase">
+              <h2 className="text-3xl sm:text-4xl font-black tracking-tighter text-secondary mb-6 uppercase">
                 Our Mission
               </h2>
-              <p className="text-lg text-secondary/60 font-medium leading-relaxed">
+              <p className="text-base sm:text-lg text-secondary/70 font-medium leading-relaxed">
                 Equip students with the practical skills, industry
                 certifications, and hands-on project experience necessary to
                 thrive in the competitive cloud computing landscape.
@@ -98,7 +98,7 @@ export default function AboutPage() {
       </section>
 
       {/* What We Do Section */}
-      <section className="py-32 border-b border-border relative overflow-hidden">
+      <section className="py-24 lg:py-32 border-b border-border relative overflow-hidden">
         <div className="absolute right-0 bottom-0 w-1/2 h-1/2 opacity-10 pointer-events-none">
           <AsciiSphere size={500} />
         </div>
@@ -108,17 +108,17 @@ export default function AboutPage() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={revealVariants}
-            className="mb-20"
+            className="mb-16 lg:mb-20"
           >
             <span className="text-[0.7rem] font-bold uppercase tracking-[0.3em] text-primary mb-4 block">
               What We Do
             </span>
-            <h2 className="text-5xl lg:text-7xl font-black tracking-tighter text-secondary leading-none uppercase mb-8">
+            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tighter text-secondary leading-none uppercase mb-8">
               Programs that turn <br /> curiosity into <br /> output.
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
             {[
               {
                 icon: Cloud,
@@ -143,7 +143,7 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 variants={revealVariants}
                 transition={{ delay: i * 0.1 }}
-                className="flex flex-col gap-6"
+                className="flex flex-col gap-6 p-6 sm:p-8 bg-white border border-border/60 shadow-xs"
               >
                 <div className="text-primary">
                   <item.icon className="w-10 h-10" />
@@ -151,7 +151,7 @@ export default function AboutPage() {
                 <h3 className="text-2xl font-black tracking-tighter text-secondary uppercase leading-none">
                   {item.title}
                 </h3>
-                <p className="text-secondary/60 font-medium leading-relaxed">
+                <p className="text-secondary/70 font-medium leading-relaxed">
                   {item.desc}
                 </p>
               </motion.div>

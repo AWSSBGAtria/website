@@ -11,8 +11,21 @@ export default function CloudBackground({ className = "" }: { className?: string
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    let isVisible = true;
     let animationFrameId: number;
     let particles: { x: number; y: number; radius: number; speed: number; opacity: number }[] = [];
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const wasVisible = isVisible;
+        isVisible = entry.isIntersecting;
+        if (!wasVisible && isVisible) {
+          animationFrameId = requestAnimationFrame(draw);
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(canvas);
 
     const resize = () => {
       canvas.width = canvas.offsetWidth;
@@ -35,6 +48,7 @@ export default function CloudBackground({ className = "" }: { className?: string
     };
 
     const draw = () => {
+      if (!isVisible) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       particles.forEach(p => {
@@ -61,6 +75,7 @@ export default function CloudBackground({ className = "" }: { className?: string
     draw();
 
     return () => {
+      observer.disconnect();
       window.removeEventListener("resize", resize);
       cancelAnimationFrame(animationFrameId);
     };

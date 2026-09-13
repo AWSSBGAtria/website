@@ -11,10 +11,23 @@ export default function NetworkGrid({ className = "" }: { className?: string }) 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    let isVisible = true;
     let animationFrameId: number;
     const dots: { x: number; y: number; vx: number; vy: number }[] = [];
     const dotCount = 50;
     const connectionDist = 150;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const wasVisible = isVisible;
+        isVisible = entry.isIntersecting;
+        if (!wasVisible && isVisible) {
+          animationFrameId = requestAnimationFrame(draw);
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(canvas);
 
     const resize = () => {
       canvas.width = canvas.offsetWidth;
@@ -35,6 +48,7 @@ export default function NetworkGrid({ className = "" }: { className?: string }) 
     };
 
     const draw = () => {
+      if (!isVisible) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       ctx.fillStyle = "rgba(79, 70, 229, 0.3)";
@@ -74,6 +88,7 @@ export default function NetworkGrid({ className = "" }: { className?: string }) 
     draw();
 
     return () => {
+      observer.disconnect();
       window.removeEventListener("resize", resize);
       cancelAnimationFrame(animationFrameId);
     };

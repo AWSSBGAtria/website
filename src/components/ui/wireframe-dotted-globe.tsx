@@ -309,13 +309,25 @@ export default function RotatingEarth({
       }
     };
 
+    let isVisible = true;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          render();
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(canvas);
+
     // Set up rotation and interaction
     const rotation: [number, number] = [0, 0];
     let autoRotate = true;
     const rotationSpeed = 0.5;
 
     const rotate = () => {
-      if (autoRotate) {
+      if (autoRotate && isVisible) {
         rotation[0] += rotationSpeed;
         projection.rotate(rotation);
         render();
@@ -376,6 +388,7 @@ export default function RotatingEarth({
 
     // Cleanup
     return () => {
+      observer.disconnect();
       rotationTimer.stop();
       canvas.removeEventListener("mousedown", handleMouseDown);
       canvas.removeEventListener("wheel", handleWheel);
