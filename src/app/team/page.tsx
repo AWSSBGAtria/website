@@ -5,6 +5,7 @@ import { Github, Linkedin, Mail, Twitter, Instagram } from "lucide-react";
 import React from "react";
 import { teams } from "@/lib/site-data";
 import AsciiDiamond from "@/components/ui/ascii-diamond";
+import { EntranceFade, EntranceLines } from "@/components/ui/entrance";
 
 type SocialPlatform = "github" | "linkedin" | "twitter" | "mail" | "instagram";
 
@@ -121,7 +122,7 @@ function MemberCard({
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${member.name}'s ${platform}`}
-            className="w-8 h-8 border border-border flex items-center justify-center text-secondary/60 hover:bg-secondary hover:text-white hover:border-secondary transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            className="w-8 h-8 border border-border flex items-center justify-center text-secondary/60 hover:bg-secondary hover:text-white hover:border-secondary transition-all active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             {socialIcons[platform as SocialPlatform]}
           </a>
@@ -144,22 +145,23 @@ export default function TeamPage() {
           <AsciiDiamond size={400} />
         </div>
         <div className="container px-8 mx-auto relative z-10">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={revealVariants}
-          >
+          <EntranceFade delay={0}>
             <span className="text-[0.7rem] font-bold uppercase tracking-[0.3em] text-primary mb-4 block">
               The Core Team
             </span>
-            <h1 className="text-6xl lg:text-8xl font-black tracking-tighter leading-[0.9] text-secondary mb-8">
-              The builders <br /> behind the <br /> community.
-            </h1>
+          </EntranceFade>
+          <h1 className="text-6xl lg:text-8xl font-black tracking-tighter leading-[0.9] text-secondary mb-8">
+            <EntranceLines
+              baseDelay={0.08}
+              lines={["The builders", "behind the", "community."]}
+            />
+          </h1>
+          <EntranceFade delay={0.45}>
             <p className="text-xl text-secondary/70 font-medium leading-relaxed max-w-2xl">
               Meet the dedicated students working to build the best tech
               community at Atria Institute of Technology.
             </p>
-          </motion.div>
+          </EntranceFade>
         </div>
       </section>
 
@@ -220,7 +222,7 @@ export default function TeamPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`${leader.name}'s ${platform}`}
-                        className="w-12 h-12 border border-border flex items-center justify-center text-secondary/60 hover:bg-secondary hover:text-white hover:border-secondary transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                        className="w-12 h-12 border border-border flex items-center justify-center text-secondary/60 hover:bg-secondary hover:text-white hover:border-secondary transition-all active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                       >
                         {socialIcons[platform as SocialPlatform]}
                       </a>

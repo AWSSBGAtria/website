@@ -6,6 +6,7 @@ import React from "react";
 import AsciiCube from "@/components/ui/ascii-cube";
 import AsciiSphere from "@/components/ui/ascii-sphere";
 import NetworkGrid from "@/components/ui/network-grid";
+import { EntranceFade, EntranceLines } from "@/components/ui/entrance";
 
 const revealVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -29,23 +30,24 @@ export default function AboutPage() {
           <AsciiCube size={400} />
         </div>
         <div className="container px-8 mx-auto relative z-10">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={revealVariants}
-          >
+          <EntranceFade delay={0}>
             <span className="text-[0.7rem] font-bold uppercase tracking-[0.3em] text-primary mb-4 block">
               Our Philosophy
             </span>
-            <h1 className="text-6xl lg:text-8xl font-black tracking-tighter leading-[0.9] text-secondary mb-8">
-              Community built <br /> around <br /> practice.
-            </h1>
+          </EntranceFade>
+          <h1 className="text-6xl lg:text-8xl font-black tracking-tighter leading-[0.9] text-secondary mb-8">
+            <EntranceLines
+              baseDelay={0.08}
+              lines={["Community built", "around", "practice."]}
+            />
+          </h1>
+          <EntranceFade delay={0.45}>
             <p className="text-xl text-secondary/70 font-medium leading-relaxed max-w-2xl">
               AWS Student Builder Group at Atria is for students who want
               hands-on cloud work, sharper technical foundations, and a space to
               build with others.
             </p>
-          </motion.div>
+          </EntranceFade>
         </div>
       </section>
 

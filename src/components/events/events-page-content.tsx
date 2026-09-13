@@ -5,6 +5,8 @@ import { ExternalLink, MapPin, Search } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import type { MeetupEvent } from "@/lib/meetup-events";
+import { MarkdownText } from "@/lib/markdown";
+import { EntranceFade, EntranceLines } from "@/components/ui/entrance";
 import AsciiTorus from "@/components/ui/ascii-torus";
 
 type EventsPageContentProps = {
@@ -81,22 +83,23 @@ export function EventsPageContent({ events }: EventsPageContentProps) {
           <AsciiTorus size={400} />
         </div>
         <div className="container px-8 mx-auto">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={revealVariants}
-          >
+          <EntranceFade delay={0}>
             <span className="text-[0.7rem] font-bold uppercase tracking-[0.3em] text-primary mb-4 block">
               Our Calendar
             </span>
-            <h1 className="text-6xl lg:text-8xl font-black tracking-tighter leading-[0.9] text-secondary mb-8">
-              Workshops & <br /> Build Nights
-            </h1>
+          </EntranceFade>
+          <h1 className="text-6xl lg:text-8xl font-black tracking-tighter leading-[0.9] text-secondary mb-8">
+            <EntranceLines
+              baseDelay={0.08}
+              lines={["Workshops &", "Build Nights"]}
+            />
+          </h1>
+          <EntranceFade delay={0.45}>
             <p className="text-xl text-secondary/60 font-medium leading-relaxed max-w-2xl">
               Join us for hands-on sessions, technical workshops, and community
               meetups where we build the future on AWS.
             </p>
-          </motion.div>
+          </EntranceFade>
         </div>
       </section>
 
@@ -119,7 +122,7 @@ export function EventsPageContent({ events }: EventsPageContentProps) {
               <button
                 key={filter}
                 onClick={() => setEventFilter(filter)}
-                className={`px-6 py-3 text-[0.65rem] font-black uppercase tracking-widest transition-all border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
+                className={`px-6 py-3 text-[0.65rem] font-black uppercase tracking-widest transition-all active:scale-[0.98] border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary ${
                   eventFilter === filter
                     ? "bg-secondary text-white border-secondary"
                     : "bg-white text-secondary border-border hover:border-secondary"
@@ -203,9 +206,9 @@ function MeetupEventCard({
           {event.title}
         </h3>
       </div>
-      <p className="text-secondary/70 font-medium mb-8 line-clamp-3 leading-relaxed">
-        {event.description}
-      </p>
+      <div className="text-secondary/70 font-medium mb-8 line-clamp-3 leading-relaxed md-desc">
+        <MarkdownText text={event.description} />
+      </div>
       <div className="flex items-center gap-3 mb-8 text-[0.65rem] font-bold uppercase tracking-widest text-secondary/60">
         <MapPin className="w-4 h-4 text-primary shrink-0" />
         {event.location}
@@ -215,7 +218,7 @@ function MeetupEventCard({
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`RSVP for ${event.title} on Meetup`}
-        className="inline-flex items-center gap-4 px-8 py-4 border border-secondary text-secondary text-[0.7rem] font-black uppercase tracking-widest hover:bg-secondary hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
+        className="inline-flex items-center gap-4 px-8 py-4 border border-secondary text-secondary text-[0.7rem] font-black uppercase tracking-widest hover:bg-secondary hover:text-white transition-all active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
       >
         RSVP ON MEETUP <ExternalLink className="w-4 h-4" />
       </a>

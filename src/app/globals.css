@@ -178,6 +178,44 @@ body {
   transform: translateY(0);
 }
 
+/* Hero entrance (compositor-thread keyframes so the text stays smooth
+   even while the ASCII canvas renders on the main thread) */
+@keyframes hero-line-up {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-line {
+  animation: hero-line-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  will-change: transform;
+}
+
+.hero-fade {
+  animation: hero-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-line,
+  .hero-fade {
+    animation: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -191,4 +229,49 @@ body {
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Markdown-formatted event descriptions */
+.md-desc p {
+  margin-bottom: 0.5rem;
+}
+
+.md-desc p:last-child,
+.md-desc ul:last-child {
+  margin-bottom: 0;
+}
+
+.md-desc .md-h,
+.md-desc strong {
+  font-weight: 800;
+  color: var(--color-secondary);
+}
+
+.md-desc em {
+  font-style: italic;
+}
+
+.md-desc .md-link {
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.md-desc code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: rgb(79 70 229 / 0.08);
+  border: 1px solid var(--color-border);
+  padding: 0.05rem 0.3rem;
+}
+
+.md-desc ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.md-desc li {
+  margin-bottom: 0.15rem;
 }

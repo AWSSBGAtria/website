@@ -54,7 +54,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/whatsapp",
-        destination: "https://chat.whatsapp.com/EiDldIoFMwOLqO0U7e0OZj",
+        destination: "https://chat.whatsapp.com/IVLRT2xTxGwEJ502q1Kw4t",
         permanent: true,
       },
     ];
