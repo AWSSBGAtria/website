@@ -248,7 +248,11 @@ export default function TeamPage() {
                 </h2>
               </motion.div>
 
-              <div className="flex overflow-x-auto pb-8 -mx-8 px-8 snap-x snap-mandatory md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-12 md:pb-0 md:mx-0 md:px-0 scrollbar-hide">
+              <div
+                className={`flex overflow-x-auto pb-8 -mx-8 px-8 snap-x snap-mandatory md:grid md:grid-cols-2 md:gap-12 md:pb-0 md:mx-0 md:px-0 scrollbar-hide ${
+                  category === "Core" ? "lg:grid-cols-3" : "lg:grid-cols-4"
+                }`}
+              >
                 {members.map((member, index) => (
                   <div
                     key={index}

@@ -64,6 +64,16 @@ export const teams = {
       },
     },
     {
+      name: "Aiman Shariff G",
+      role: "Resources & Experience Lead",
+      image: "/team/shariff.webp",
+      socials: {
+        github: "aimanshariff19",
+        linkedin: "aiman-shariff-357170330",
+        instagram: "mr_maddzz__",
+      },
+    },
+    {
       name: "B C H Benjamin",
       role: "Technical & Development Lead",
       image: "/team/benjamin.webp",
@@ -72,16 +82,6 @@ export const teams = {
         linkedin: "bchbenjamin",
         twitter: "bchbenjamin_",
         instagram: "bchbenjamin",
-      },
-    },
-    {
-      name: "Aiman Shariff G",
-      role: "Resources & Experience Lead",
-      image: "/team/shariff.webp",
-      socials: {
-        github: "aimanshariff19",
-        linkedin: "aiman-shariff-357170330",
-        instagram: "mr_maddzz__",
       },
     },
   ],
