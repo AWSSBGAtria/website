@@ -40,14 +40,7 @@ const teamGlows: Record<string, string> = {
   leader:
     "radial-gradient(circle at 50% 42%, transparent 0%, rgba(79,70,229,0.22) 55%, rgba(79,70,229,0.22) 100%)",
   core: "radial-gradient(circle at 50% 42%, transparent 0%, rgba(202,162,39,0.25) 55%, rgba(202,162,39,0.25) 100%)",
-  technical:
-    "radial-gradient(circle at 50% 42%, transparent 0%, rgba(37,99,235,0.22) 55%, rgba(37,99,235,0.22) 100%)",
-  media:
-    "radial-gradient(circle at 50% 42%, transparent 0%, rgba(236,72,153,0.22) 55%, rgba(236,72,153,0.22) 100%)",
-  operations:
-    "radial-gradient(circle at 50% 42%, transparent 0%, rgba(22,163,74,0.22) 55%, rgba(22,163,74,0.22) 100%)",
-  events:
-    "radial-gradient(circle at 50% 42%, transparent 0%, rgba(249,115,22,0.25) 55%, rgba(249,115,22,0.25) 100%)",
+  team: "radial-gradient(circle at 50% 42%, transparent 0%, rgba(37,99,235,0.22) 55%, rgba(37,99,235,0.22) 100%)",
 };
 
 const teamGlowFallback =
@@ -252,7 +245,6 @@ export default function TeamPage() {
               >
                 <h2 className="text-4xl lg:text-6xl font-black tracking-tighter text-secondary uppercase leading-none">
                   {category}
-                  {category !== "Core" ? " Wing" : ""}
                 </h2>
               </motion.div>
 
