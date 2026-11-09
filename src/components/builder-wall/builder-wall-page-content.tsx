@@ -3,13 +3,14 @@
 import { ArrowUpRight, Folder } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
+import type { BuilderWallPost } from "@/lib/builder-wall-data";
 
 type BuilderWallEvent = {
   id: string;
   name: string;
   date: string;
   source: "Meetup" | "Custom";
-  posts: string[];
+  posts: BuilderWallPost[];
 };
 
 const easeOut = [0.16, 1, 0.3, 1] as const;
