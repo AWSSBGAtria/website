@@ -61,7 +61,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
-      <body className="page-grid min-h-screen font-sans bg-(--color-bg) text-(--color-text)">
+      <body className="min-h-screen font-sans bg-(--color-bg) text-(--color-text)">
         <Navbar />
         <main className="flex min-h-screen flex-col">{children}</main>
         <Footer />

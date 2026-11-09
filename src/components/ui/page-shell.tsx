@@ -8,8 +8,8 @@ export function PageShell({
   className?: string;
 }) {
   return (
-    <div className="relative min-h-screen w-full bg-white geometric-grid">
-      {/* Abstract Background Blocks on Edges aligned to 60px grid */}
+    <div className="relative min-h-screen w-full bg-white">
+      {/* Abstract background blocks around the content */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         <div
           className="bg-block bg-block-pink w-45 h-45 absolute"
