@@ -165,13 +165,6 @@ export function BuilderWallPostsGrid({
               <h3 className="text-xl font-black uppercase tracking-tight text-secondary">
                 No posts added yet
               </h3>
-              <p className="mx-auto mt-2 max-w-lg text-sm leading-relaxed text-secondary/55">
-                Paste public LinkedIn post URLs into this event’s array in
-                <code className="mx-1 rounded bg-slate-100 px-1.5 py-0.5 font-mono text-xs text-secondary">
-                  src/lib/builder-wall-data.ts
-                </code>
-                to create the embed grid.
-              </p>
             </div>
           )}
         </div>
